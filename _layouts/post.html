@@ -7,20 +7,20 @@ layout: default
 
 <!-- Hero Section with Post Metadata -->
 {% include hero.html
-    title=page.title
-    subtitle=page.description
-    theme="dark"
-    aria_label="Blog post header"
-    breadcrumb=breadcrumb_array
-    itemtype="https://schema.org/BlogPosting"
-    itemprop_headline="headline"
-    date=page.date
-    itemprop_date="datePublished"
-    author=page.author
-    itemprop_author="author"
-    reading_time=page.reading_time
-    last_modified_at=page.last_modified_at
-    itemprop_modified="dateModified"
+title=page.title
+subtitle=page.description
+theme="dark"
+aria_label="Blog post header"
+breadcrumb=breadcrumb_array
+itemtype="https://schema.org/BlogPosting"
+itemprop_headline="headline"
+date=page.date
+itemprop_date="datePublished"
+author=page.author
+itemprop_author="author"
+reading_time=page.reading_time
+last_modified_at=page.last_modified_at
+itemprop_modified="dateModified"
 %}
 
 <!-- Article Content Section -->
@@ -32,10 +32,12 @@ layout: default
                 <!-- Featured Image -->
                 <figure class="mb-12">
                     {% if page.image %}
-                    <img src="{{ page.image }}" alt="{{ page.title }}" itemprop="image"
-                        class="w-full max-h-96 object-cover rounded-lg shadow-lg" data-check-image="true">
+                    <img src="{{ page.image }}" alt="{{ page.title }}" itemprop="image" width="1200" height="675"
+                        fetchpriority="high" class="w-full max-h-96 object-cover rounded-lg shadow-lg"
+                        data-check-image="true">
                     {% else %}
                     <img src="{{ '/assets/images/placeholder.svg' | relative_url }}" alt="No image available"
+                        width="1200" height="675" fetchpriority="high"
                         class="w-full max-h-96 object-cover rounded-lg shadow-lg">
                     {% endif %}
                     {% if page.image_alt %}

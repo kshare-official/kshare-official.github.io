@@ -4,12 +4,12 @@
     <!-- Previous Button -->
     {% if paginator.previous_page %}
         {% if paginator.previous_page == 1 %}
-            <a href="{{ '/' | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+            <a href="{{ '/' | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                 <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
                 Previous
             </a>
         {% else %}
-            <a href="{{ paginator.previous_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+            <a href="{{ paginator.previous_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                 <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
                 Previous
             </a>
@@ -30,11 +30,11 @@
                 </span>
             {% else %}
                 {% if page_num == 1 %}
-                    <a href="{{ '/' | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+                    <a href="{{ '/' | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                         {{ page_num }}
                     </a>
                 {% else %}
-                    <a href="{{ site.paginate_path | replace: ':num', page_num | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+                    <a href="{{ site.paginate_path | replace: ':num', page_num | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                         {{ page_num }}
                     </a>
                 {% endif %}
@@ -44,7 +44,7 @@
 
     <!-- Next Button -->
     {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+        <a href="{{ paginator.next_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
             Next
             <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
         </a>

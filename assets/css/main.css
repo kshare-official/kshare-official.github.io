@@ -284,6 +284,8 @@ img[data-src] {
     fill: none;
     display: inline-block;
     vertical-align: middle;
+    width: 24px;
+    height: 24px;
 }
 
 /* Icon animations (ESSENTIAL) */
@@ -302,6 +304,7 @@ img[data-src] {
 a:hover [data-lucide],
 button:hover [data-lucide] {
     animation: icon-bounce 0.4s ease-in-out;
+    will-change: transform;
 }
 
 /* ============================================

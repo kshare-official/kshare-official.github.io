@@ -30,7 +30,7 @@ layout: default
                     {% for post in page.posts %}
                     <li>
                         <article
-                            class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 p-5 bg-white rounded-lg hover:shadow-md hover:bg-gray-50 transition-all border-l-4 border-blue-600 shadow-sm border border-gray-100"
+                            class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 p-5 bg-white rounded-lg hover:shadow-md hover:bg-gray-50 transition-colors transition-shadow border-l-4 border-blue-600 shadow-sm border border-gray-100"
                             itemscope itemtype="https://schema.org/BlogPosting">
                             <div class="flex-1">
                                 <a href="{{ post.url | relative_url }}"

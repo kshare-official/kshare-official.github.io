@@ -33,7 +33,7 @@ header" breadcrumb=breadcrumb_array %}
                     {% assign category_posts = site.posts | where_exp: "post", "post.categories contains category" %}
                     <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}/" class="group">
                         <div
-                            class="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all border border-gray-200 px-4 py-2 text-center h-full flex gap-2 items-center justify-center w-full">
+                            class="bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow border border-gray-200 px-4 py-2 text-center h-full flex gap-2 items-center justify-center w-full">
                             <i data-lucide="folder"
                                 class="text-blue-600 group-hover:scale-110 transition-transform"></i>
                             <h3 class="!text-lg font-bold text-blue-600 group-hover:text-blue-800 transition">

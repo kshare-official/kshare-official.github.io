@@ -37,16 +37,7 @@ last_modified_at: 2026-04-25 01:45:00 +0530
 ## Introduction
 
 Creating realistic AI-generated images has become increasingly competitive. While many outputs still appear artificial or overly smooth, advanced prompt techniques like the **Flash Effect AI Prompt** can dramatically improve realism.
-<figure>
-  <img src="https://kshare.in/storage/prompt/after-images/flash-effect-prompt-cinematic-lighting-after.png"
-       alt="Flash effect AI prompt cinematic lighting DSLR style ultra realistic portrait"
-       title="Flash Effect AI Prompt Cinematic Lighting Result"
-       loading="lazy">
-  
-  <figcaption>
-    Ultra-realistic AI image created using cinematic flash lighting prompt
-  </figcaption>
-</figure>
+
 This method simulates **professional DSLR flash lighting**, producing images with crisp highlights, natural shadows, and authentic skin texture.
 
 ---
