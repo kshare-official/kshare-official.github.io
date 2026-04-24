@@ -372,21 +372,25 @@ button:hover [data-lucide] {
     transform: rotate(180deg);
 }
 
-#table-of-contents+ol {
+#table-of-contents + ol,
+#table-of-contents + ul {
     display: none;
 }
 
-#table-of-contents.expanded+ol {
+#table-of-contents.expanded + ol,
+#table-of-contents.expanded + ul {
     display: block;
 }
 
-#table-of-contents+ol li a {
+#table-of-contents + ol li a,
+#table-of-contents + ul li a {
     color: #1d4ed8;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-#table-of-contents+ol li a:hover {
+#table-of-contents + ol li a:hover,
+#table-of-contents + ul li a:hover {
     color: #1e40af;
     text-decoration: underline;
 }

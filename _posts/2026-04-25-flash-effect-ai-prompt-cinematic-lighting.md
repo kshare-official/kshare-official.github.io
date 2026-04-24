@@ -21,7 +21,7 @@ lang: en
 last_modified_at: 2026-04-25 01:45:00 +0530
 ---
 
-## Table of Contents
+## Table of Contents {: #table-of-contents}
 - [Introduction](#introduction)
 - [What is Flash Effect AI Prompt](#what-is-flash-effect-ai-prompt)
 - [Why This Technique is Trending](#why-this-technique-is-trending)

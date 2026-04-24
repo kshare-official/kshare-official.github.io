@@ -19,7 +19,7 @@ lang: en
 last_modified_at: 2026-04-25 01:15:00 +0530
 ---
 
-## Table of Contents
+## Table of Contents {: #table-of-contents}
 
 1. [Welcome to KShare!](#welcome-to-kshare)
 2. [What is KShare?](#what-is-kshare)

@@ -244,18 +244,41 @@ function skipToMain() {
 
 // Table of Contents Collapsible
 function setupTableOfContents() {
-    const tocHeading = document.getElementById('table-of-contents');
+    let tocHeading = document.getElementById('table-of-contents');
+
+    // Auto-detect if ID is missing but text matches
+    if (!tocHeading) {
+        const headings = document.querySelectorAll('h2, h3');
+        for (const h of headings) {
+            if (h.textContent.trim().toLowerCase() === 'table of contents') {
+                h.id = 'table-of-contents';
+                tocHeading = h;
+                break;
+            }
+        }
+    }
 
     if (tocHeading) {
+        // Toggle on click
         tocHeading.addEventListener('click', function (e) {
             e.preventDefault();
             tocHeading.classList.toggle('expanded');
+        });
+
+        // Accessibility
+        tocHeading.setAttribute('role', 'button');
+        tocHeading.setAttribute('tabindex', '0');
+        tocHeading.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
         });
     }
 }
 
 // Initialize all functions
-document.addEventListener('DOMContentLoaded', function () {
+function init() {
     calculateReadingTime();
     setupCodeBlocks();
     setupNewsletterForm();
@@ -264,4 +287,10 @@ document.addEventListener('DOMContentLoaded', function () {
     smoothScroll();
     skipToMain();
     setupTableOfContents();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
