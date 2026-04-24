@@ -22,17 +22,17 @@
     {% for post in posts_to_show %}
     <li>
         <article
-            class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 p-5 bg-white rounded-lg hover:shadow-md hover:bg-gray-50 transition-colors transition-shadow border-l-4 border-blue-600 shadow-sm border border-gray-100"
+            class="flex flex-col gap-4 p-5 bg-white rounded-lg hover:shadow-md hover:bg-gray-50 transition-colors transition-shadow border-l-4 border-blue-600 shadow-sm border border-gray-100"
             itemscope itemtype="https://schema.org/BlogPosting">
 
-            <div class="w-full sm:w-48 h-32 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden relative">
+            <div class="w-full h-48 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden relative">
                 {% if post.image %}
                 <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" decoding="async"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" width="192"
-                    height="128" data-check-image="true">
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" width="600"
+                    height="192" data-check-image="true">
                 {% else %}
                 <img src="{{ '/assets/images/placeholder.svg' | relative_url }}" alt="{{ post.title }}" loading="lazy"
-                    decoding="async" class="w-full h-full object-cover opacity-20" width="192" height="128">
+                    decoding="async" class="w-full h-full object-cover opacity-20" width="600" height="192">
                 {% endif %}
             </div>
 

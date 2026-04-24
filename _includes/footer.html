@@ -1,52 +1,78 @@
 <footer class="bg-gray-900 text-white w-full pt-12 pb-6">
     <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
-        <!-- About Section -->
-        <div>
-            <h3 class="text-xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">{{ site.title }}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">{{ site.description }}</p>
-        </div>
+            <!-- About Section -->
+            <div>
+                <h3
+                    class="text-xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                    {{ site.title }}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">{{ site.description }}</p>
+            </div>
 
-        <!-- Quick Links -->
-        <div>
-            <h3 class="text-lg font-bold mb-4 text-white">Quick Links</h3>
-            <ul class="list-none space-y-2.5">
-                <li><a href="{{ '/' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="home" style="width: 16px; height: 16px;"></i> Home</a></li>
-                <li><a href="{{ '/blog' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="book-open" style="width: 16px; height: 16px;"></i> Blog</a></li>
-                <li><a href="{{ '/about' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="user" style="width: 16px; height: 16px;"></i> About</a></li>
-                <li><a href="{{ '/contact' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="mail" style="width: 16px; height: 16px;"></i> Contact</a></li>
-            </ul>
-        </div>
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white">Quick Links</h3>
+                <ul class="list-none space-y-2.5">
+                    <li><a href="{{ '/' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="home" style="width: 16px; height: 16px;"></i> Home</a></li>
+                    <li><a href="{{ '/blog' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="book-open" style="width: 16px; height: 16px;"></i> Blog</a></li>
+                    <li><a href="{{ '/about' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="user" style="width: 16px; height: 16px;"></i> About</a></li>
+                    <li><a href="{{ '/contact' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="mail" style="width: 16px; height: 16px;"></i> Contact</a></li>
+                </ul>
+            </div>
 
-        <!-- Legal -->
-        <div>
-            <h3 class="text-lg font-bold mb-4 text-white">Legal</h3>
-            <ul class="list-none space-y-2.5">
-                <li><a href="{{ '/privacy' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="shield" style="width: 16px; height: 16px;"></i> Privacy</a></li>
-                <li><a href="{{ '/terms' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="file-text" style="width: 16px; height: 16px;"></i> Terms</a></li>
-                <li><a href="{{ '/disclaimer' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="alert-circle" style="width: 16px; height: 16px;"></i> Disclaimer</a></li>
-            </ul>
-        </div>
+            <!-- Legal -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white">Legal</h3>
+                <ul class="list-none space-y-2.5">
+                    <li><a href="{{ '/privacy' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="shield" style="width: 16px; height: 16px;"></i> Privacy</a></li>
+                    <li><a href="{{ '/terms' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="file-text" style="width: 16px; height: 16px;"></i> Terms</a></li>
+                    <li><a href="{{ '/disclaimer' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="alert-circle" style="width: 16px; height: 16px;"></i> Disclaimer</a></li>
+                </ul>
+            </div>
 
-        <!-- Content & Social -->
-        <div>
-            <h3 class="text-lg font-bold mb-4 text-white">Content & Social</h3>
-            <ul class="list-none space-y-2.5">
-                <li><a href="{{ '/tags' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="tag" style="width: 16px; height: 16px;"></i> Tags</a></li>
-                <li><a href="{{ '/categories' | relative_url }}" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="folder" style="width: 16px; height: 16px;"></i> Categories</a></li>
-                {% if site.twitter_username %}
-                <li><a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i> Twitter</a></li>
-                {% endif %}
-                {% if site.github_username %}
-                <li><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i data-lucide="github" style="width: 16px; height: 16px;"></i> GitHub</a></li>
-                {% endif %}
-            </ul>
+            <!-- Content & Social -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white">Content & Social</h3>
+                <ul class="list-none space-y-2.5">
+                    <li><a href="{{ '/tags' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="tag" style="width: 16px; height: 16px;"></i> Tags</a></li>
+                    <li><a href="{{ '/categories' | relative_url }}"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="folder" style="width: 16px; height: 16px;"></i> Categories</a></li>
+                    {% if site.twitter_username %}
+                    <li><a href="https://twitter.com/{{ site.twitter_username }}" target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="twitter" style="width: 16px; height: 16px;"></i> Twitter</a></li>
+                    {% endif %}
+                    {% if site.github_username %}
+                    <li><a href="https://github.com/{{ site.github_username }}" target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors no-underline"><i
+                                data-lucide="github" style="width: 16px; height: 16px;"></i> GitHub</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
 
         <div class="border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
-            <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+            <p>&copy; {{ site.time | date: "%Y" }} <a href="https://kshare.in" target="_blank">{{ site.title }}
+                </a>. All rights reserved.</p>
         </div>
     </div>
 </footer>
-
