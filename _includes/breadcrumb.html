@@ -1,0 +1,28 @@
+{% if include.page_url == "/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"}]' %}
+{% elsif include.page_url == "/blog/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Blog","item":"' | append: site.url | append: '/blog/"}]' %}
+{% elsif include.page_url == "/about/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"About","item":"' | append: site.url | append: '/about/"}]' %}
+{% elsif include.page_url == "/contact/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Contact","item":"' | append: site.url | append: '/contact/"}]' %}
+{% elsif include.page_url == "/privacy/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"' | append: site.url | append: '/privacy/"}]' %}
+{% elsif include.page_url == "/terms/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Terms","item":"' | append: site.url | append: '/terms/"}]' %}
+{% elsif include.page_url == "/disclaimer/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Disclaimer","item":"' | append: site.url | append: '/disclaimer/"}]' %}
+{% elsif include.page_url == "/categories/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Categories","item":"' | append: site.url | append: '/categories/"}]' %}
+{% elsif include.page_url == "/tags/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Tags","item":"' | append: site.url | append: '/tags/"}]' %}
+{% elsif include.page_url contains "/categories/" %}
+  {% assign category_name = include.page_url | split: "/" | last %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Categories","item":"' | append: site.url | append: '/categories/"},{"@type":"ListItem","position":3,"name":"' | append: category_name | append: '","item":"' | append: site.url | append: include.page_url | append: '"}]' %}
+{% elsif include.page_url contains "/tags/" %}
+  {% assign tag_name = include.page_url | split: "/" | last %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Tags","item":"' | append: site.url | append: '/tags/"},{"@type":"ListItem","position":3,"name":"' | append: tag_name | append: '","item":"' | append: site.url | append: include.page_url | append: '"}]' %}
+{% else %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"' | append: include.page_title | append: '","item":"' | append: site.url | append: include.page_url | append: '"}]' %}
+{% endif %}
+

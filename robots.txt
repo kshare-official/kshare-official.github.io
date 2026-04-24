@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /_site/
+Disallow: /.git/
+Disallow: /vendor/
+
+Sitemap: https://gdflixs.github.io/sitemap.xml
+

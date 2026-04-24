@@ -1,0 +1,36 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  {%- assign tags_page = site.pages | where: "url", "/tags/" | first -%}
+  {%- if tags_page -%}
+    {%- assign lm = tags_page.last_modified_at | default: tags_page.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}/tags/</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {%- endif -%}
+
+  {%- assign tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort -%}
+  {%- for tag in tags -%}
+    {%- if tag != "" -%}
+      {%- assign tag_posts = site.posts | where_exp: "post", "post.tags contains tag" -%}
+      {%- if tag_posts.size > 0 -%}
+        {%- assign latest_post = tag_posts | sort: 'date' | last -%}
+        {%- assign lm = latest_post.last_modified_at | default: latest_post.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}/tags/{{ tag | slugify }}/</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+</urlset>
+

@@ -1,0 +1,59 @@
+---
+layout: default
+title: Categories
+description: Browse posts by categories
+permalink: /categories/
+sitemap: false
+date: 2025-11-15 12:55:18
+last_modified_at: 2025-11-16 15:32:09
+---
+
+<!-- Breadcrumb Schema -->
+{% include breadcrumb.html page_url="/categories/" %}
+
+<!-- Hero Section -->
+{% include hero.html title="Categories" subtitle="Browse posts by categories" theme="dark" aria_label="Categories page
+header" breadcrumb=breadcrumb_array %}
+
+<!-- Categories Content Section -->
+<section class="py-16 w-full" aria-label="Categories listing" itemscope itemtype="https://schema.org/CollectionPage">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 flex-wrap md:flex-row flex-col">
+            <div class="flex-1 min-w-0">
+                <p class="text-lg text-gray-700 mb-6">
+                    Explore all content categories available on GDFLIXs. Each category organizes articles into focused
+                    topics,
+                    helping you quickly find the information you're interested in.
+                </p>
+                <div class="categories-page flex flex-wrap items-center gap-3">
+                    {% assign categories = site.posts | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+
+                    {% for category in categories %}
+                    {% if category != "" %}
+                    {% assign category_posts = site.posts | where_exp: "post", "post.categories contains category" %}
+                    <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}/" class="group">
+                        <div
+                            class="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all border border-gray-200 px-4 py-2 text-center h-full flex gap-2 items-center justify-center w-full">
+                            <i data-lucide="folder"
+                                class="text-blue-600 group-hover:scale-110 transition-transform"></i>
+                            <h3 class="!text-lg font-bold text-blue-600 group-hover:text-blue-800 transition">
+                                {{ category }} (<span class="font-semibold text-blue-600">{{ category_posts.size |
+                                    pluralize: 'post',
+                                    'posts' }}</span>)</h3>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if categories.size == 0 %}
+                    <p class="text-center text-gray-600 py-16 col-span-full">No categories yet. Check back soon!</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            {% include sidebar.html %}
+        </div>
+    </div>
+</section>

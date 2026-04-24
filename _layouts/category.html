@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+{% assign current_category = page.category_name | default: page.title | downcase %}
+
+<!-- Breadcrumb Schema -->
+{% include breadcrumb.html page_url=page.url page_title=page.title %}
+
+<!-- Hero Section -->
+{% assign category_aria_label = "Category: " | append: current_category %}
+{% include hero.html title=current_category subtitle="Posts in this category" theme="dark" aria_label=category_aria_label breadcrumb=breadcrumb_array %}
+
+<!-- Category Content Section -->
+<section class="py-16 w-full" aria-label="Category posts listing" itemscope
+    itemtype="https://schema.org/CollectionPage">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 flex-wrap md:flex-row flex-col">
+            <div class="flex-1 min-w-0">
+                <!-- Posts List -->
+                {% include post-list.html filter_by_category=current_category %}
+
+                <!-- Back Link -->
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <a href="{{ '/categories' | relative_url }}"
+                        class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition">
+                        <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i>
+                        Back to Categories
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            {% include sidebar.html %}
+        </div>
+    </div>
+</section>

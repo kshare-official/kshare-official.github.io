@@ -1,0 +1,111 @@
+# ==================================================
+# 🧭 KShare Site Configuration (SEO Optimized)
+# ==================================================
+
+# Site Settings
+title: "KShare - Multi-Niche Content Platform"
+description: "Kshare is a comprehensive content platform covering diverse niches including entertainment, technology, lifestyle, business, health, and more. Discover expert articles, insights, and guides across multiple categories."
+author: "GDFLIXs Team"
+email: "support@kshare.in"
+url: "https://kshare.github.io"
+baseurl: ""   # Leave empty for root domain (e.g., gdflixs.github.io)
+
+# SEO & Social
+keywords: "multi-niche content, articles, entertainment, technology, lifestyle, business, health, guides, insights, blog platform"
+twitter_username: "@gdflixs"
+github_username: "gdflixs"
+social:
+  name: "GDFLIXs"
+  links:
+    - "https://x.com/kshare"
+    - "https://github.com/gdflixs"
+    - "https://linkedin.com/company/gdflixs"
+
+# ===============================================
+# 🔧 Build Settings
+# ===============================================
+markdown: kramdown
+highlighter: rouge
+
+# Permalink structure (SEO friendly)
+# → Uses only the post title in the URL (no categories)
+permalink: /:title/
+
+paginate: 10
+paginate_path: "/blog/page:num/"
+
+# ===============================================
+# 📂 Collections
+# ===============================================
+collections:
+  posts:
+    output: true
+    permalink: /:title/
+
+# ===============================================
+# ⚙️ Plugins
+# ===============================================
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  # - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-archives
+  - jekyll-reading-time
+  - jekyll-minifier
+
+# ===============================================
+# 🗂️ Jekyll Archives Configuration
+# ===============================================
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
+# ===============================================
+# 📁 Include & Exclude Settings
+# ===============================================
+include:
+  - _pages
+
+exclude:
+  - .gitignore
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# ===============================================
+# 🌍 Timezone
+# ===============================================
+timezone: Asia/Kolkata
+
+# ===============================================
+# 📊 Google Analytics (Optional)
+# ===============================================
+google_analytics: ""
+
+# ===============================================
+# 🚀 Performance & Caching (GitHub Pages)
+# ===============================================
+# Note: GitHub Pages automatically handles caching
+# These settings optimize for GitHub Pages CDN
+# sass:
+#   style: compressed
+
+# Minify HTML output
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: all
+  blanklines: false
+  profile: false
+  ignore:
+    envs: []
+

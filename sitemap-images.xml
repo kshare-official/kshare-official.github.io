@@ -1,0 +1,42 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  {%- for page in site.pages -%}
+    {%- unless page.url contains ".css" or page.url contains ".js" or page.url contains ".xml" or page.sitemap == false -%}
+      {%- assign lm = page.last_modified_at | default: page.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}{{ page.url }}</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    {%- if page.image -%}
+    <image:image>
+      <image:loc>{{ site.url }}{{ page.image }}</image:loc>
+      <image:title>{{ page.title }}</image:title>
+    </image:image>
+    {%- endif -%}
+  </url>
+    {%- endunless -%}
+  {%- endfor -%}
+
+  {%- for post in site.posts -%}
+    {%- assign lm = post.last_modified_at | default: post.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}{{ post.url }}</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    {%- if post.image -%}
+    <image:image>
+      <image:loc>{{ site.url }}{{ post.image }}</image:loc>
+      <image:title>{{ post.title }}</image:title>
+      {%- if post.image_alt -%}
+      <image:caption>{{ post.image_alt }}</image:caption>
+      {%- endif -%}
+    </image:image>
+    {%- endif -%}
+  </url>
+  {%- endfor -%}
+
+</urlset>
+

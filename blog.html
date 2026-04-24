@@ -1,0 +1,29 @@
+---
+layout: default
+title: Blog
+description: Read my latest blog posts
+permalink: /blog/
+date: 2025-11-15 11:22:35
+last_modified_at: 2025-11-16 13:45:28
+---
+
+<!-- Breadcrumb Schema -->
+{% include breadcrumb.html page_url="/blog/" %}
+
+<!-- Hero Section -->
+{% include hero.html title="Blog" subtitle="Thoughts, tutorials, and insights" theme="dark" aria_label="Blog page header" breadcrumb=breadcrumb_array %}
+
+<!-- Blog Content Section -->
+<section class="py-16 w-full" aria-label="Blog posts listing">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 flex-wrap md:flex-row flex-col">
+            <div class="flex-1 min-w-0">
+                {% include post-list.html %}
+            </div>
+
+            <!-- Sidebar -->
+            {% include sidebar.html %}
+        </div>
+    </div>
+</section>
+

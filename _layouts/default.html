@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-site-verification" content="pZHT1msYeOAsxzz_y9SZW31R9PMhCgpc-1vq3Zt1IMw" />
+    <!-- SEO Meta Tags -->
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} - {{ site.description }}{% endif %}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 25 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 25 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ', ' }}, {% endif %}{% if page.categories %}{{ page.categories | join: ', ' }}, {% endif %}{{ site.keywords }}">
+    <meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- Open Graph Tags (Social Media) -->
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ '/assets/images/og-image.png' | absolute_url }}{% endif %}">
+    <meta property="og:site_name" content="{{ site.title }}">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ '/assets/images/og-image.png' | absolute_url }}{% endif %}">
+    {% if site.twitter_username %}
+    <meta name="twitter:creator" content="{{ site.twitter_username }}">{% endif %}
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+
+    <!-- DNS Prefetch & Preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Google Fonts - Preconnect for faster loading with font-display=swap to prevent layout shift -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    </noscript>
+    <!-- Custom Styles - Inline critical styles, defer non-critical -->
+    <style>@font-face{font-family:'Roboto';src:local('Roboto');font-display:swap;}html{overflow-y:scroll;}body{font-family:'Roboto',sans-serif;margin:0;padding:0;line-height:1.5;min-height:100vh;}header{min-height:60px;}main{min-height:100vh;}h1,h2,h3,h4,h5,h6{line-height:1.3;}p{line-height:1.6;}h1{font-size:2rem;line-height:1.2;}h2{font-size:1.75rem;line-height:1.3;}h3{font-size:1.5rem;}img{max-width:100%;height:auto;display:block;}</style>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.time | relative_url }}" media="print" onload="this.media='all'">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url }}",
+        "description": "{{ site.description | escape }}",
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.title }}",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "{{ site.url }}/assets/images/favicon.png"
+            }
+        }
+    }
+    </script>
+    {% if page.layout == "page" or page.layout == "default" %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ page.title | escape }}",
+        "url": "{{ site.url }}{{ page.url }}",
+        "description": "{{ page.description | default: site.description | escape }}",
+        "datePublished": "{{ page.date | default: site.time | date_to_xmlschema }}",
+        "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}"
+    }
+    </script>
+    {% endif %}
+    {% if page.layout == "post" %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ page.title | escape }}",
+        "description": "{{ page.description | escape }}",
+        "url": "{{ site.url }}{{ page.url }}",
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+        "image": "{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.url }}/assets/images/og-image.png{% endif %}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ page.author | default: site.author | escape }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.title }}",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "{{ site.url }}/assets/images/favicon.png"
+            }
+        },
+        "articleBody": "{{ page.content | strip_html | normalize_whitespace | truncate: 500 }}"
+    }
+    </script>
+    {% endif %}
+    {% if include.breadcrumb %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": {{ include.breadcrumb }}
+    }
+    </script>
+    {% endif %}
+   <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SiteNavigationElement",
+        "name": "Main Navigation",
+        "url": "{{ site.url }}/",
+        "hasPart": [
+            {
+            "@type": "WebPage",
+            "name": "Home",
+            "url": "{{ site.url }}/"
+            },
+            {
+            "@type": "WebPage",
+            "name": "Blog",
+            "url": "{{ site.url }}/blog/"
+            },
+            {
+            "@type": "WebPage",
+            "name": "About",
+            "url": "{{ site.url }}/about/"
+            },
+            {
+            "@type": "WebPage",
+            "name": "Contact",
+            "url": "{{ site.url }}/contact/"
+            },
+            {
+            "@type": "WebPage",
+            "name": "Privacy Policy",
+            "url": "{{ site.url }}/privacy/"
+            },
+            {
+            "@type": "WebPage",
+            "name": "Terms of Service",
+            "url": "{{ site.url }}/terms/"
+            },
+            {
+            "@type": "WebPage",
+            "name": "Disclaimer",
+            "url": "{{ site.url }}/disclaimer/"
+            }
+        ]
+    }
+    </script>
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+</head>
+
+<body>
+    {% include header.html %}
+
+    <!-- Main Content Area -->
+    <main role="main">
+        {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <!-- Lucide Icons - Defer loading to prevent render blocking -->
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Analytics - Lazy loaded after page interaction to prevent render blocking -->
+    {% if site.google_analytics %}
+    <script>
+        // Lazy load Google Analytics after user interaction
+        function loadGoogleAnalytics() {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}';
+            document.head.appendChild(script);
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', '{{ site.google_analytics }}');
+        }
+
+        // Load analytics on first user interaction
+        // ['click', 'scroll', 'touchstart'].forEach(event => {
+        //     document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
+        // });
+
+        // Also load after 5 seconds if no interaction
+        setTimeout(loadGoogleAnalytics, 2500);
+    </script>
+    {% endif %}
+
+    <script defer src="{{ '/assets/js/script.js' | relative_url }}"></script>
+
+    <!-- Initialize Lucide Icons - Deferred to prevent forced reflows -->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+
+    <!-- Additional Page Setup Script -->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set active menu item based on current page
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('nav a');
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                // Check if the link matches the current page
+                if (href === currentPath || (href === '/' && currentPath === '/') ||
+                    (href !== '/' && currentPath.includes(href))) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Image placeholder for missing images
+            const images = document.querySelectorAll('img[data-check-image="true"]');
+            images.forEach(img => {
+                const checkImage = new Image();
+                checkImage.onload = function () {
+                    // Image exists
+                };
+                checkImage.onerror = function () {
+                    // Replace with placeholder
+                    img.src = '{{ "/assets/images/placeholder.svg" | relative_url }}';
+                    img.alt = 'No image available';
+                    img.classList.add('image-placeholder');
+                };
+                checkImage.src = img.src;
+            });
+        });
+    </script>
+</body>
+
+</html>

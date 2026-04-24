@@ -1,0 +1,36 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  {%- assign categories_page = site.pages | where: "url", "/categories/" | first -%}
+  {%- if categories_page -%}
+    {%- assign lm = categories_page.last_modified_at | default: categories_page.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}/categories/</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {%- endif -%}
+
+  {%- assign categories = site.posts | map: 'categories' | join: ',' | split: ',' | uniq | sort -%}
+  {%- for category in categories -%}
+    {%- if category != "" -%}
+      {%- assign category_posts = site.posts | where_exp: "post", "post.categories contains category" -%}
+      {%- if category_posts.size > 0 -%}
+        {%- assign latest_post = category_posts | sort: 'date' | last -%}
+        {%- assign lm = latest_post.last_modified_at | default: latest_post.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}/categories/{{ category | slugify }}/</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+</urlset>
+

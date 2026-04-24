@@ -1,0 +1,13 @@
+---
+layout: null
+---
+
+{% for tag in site.tags %}
+  {% capture tag_name %}{{ tag[0] }}{% endcapture %}
+  ---
+  layout: tag
+  title: "{{ tag_name | capitalize }}"
+  tag_name: "{{ tag_name }}"
+  permalink: /tags/{{ tag_name | slugify }}/
+  ---
+{% endfor %}

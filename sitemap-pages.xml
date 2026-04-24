@@ -1,0 +1,54 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  {%- assign home_page = site.pages | where: "url", "/" | first -%}
+  {%- if home_page -%}
+    {%- assign lm = home_page.last_modified_at | default: home_page.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}/</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  {%- endif -%}
+
+  {%- assign blog_page = site.pages | where: "url", "/blog/" | first -%}
+  {%- if blog_page -%}
+    {%- assign lm = blog_page.last_modified_at | default: blog_page.date | default: site.time -%}
+  <url>
+    <loc>{{ site.url }}/blog/</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  {%- endif -%}
+
+  {%- for page in site.pages -%}
+    {%- unless page.url contains ".css" or page.url contains ".js" or page.url contains ".xml" or page.sitemap == false or page.url == "/" or page.url == "/blog/" -%}
+
+      {%- assign lm = page.last_modified_at | default: page.date | default: site.time -%}
+
+      {%- if page.url == "/about/" -%}
+        {%- assign priority = 0.8 -%}
+      {%- elsif page.url == "/contact/" -%}
+        {%- assign priority = 0.7 -%}
+      {%- elsif page.url == "/privacy/" or page.url == "/terms/" or page.url == "/disclaimer/" -%}
+        {%- assign priority = 0.6 -%}
+      {%- else -%}
+        {%- assign priority = 0.7 -%}
+      {%- endif -%}
+
+  <url>
+    <loc>{{ site.url }}{{ page.url }}</loc>
+    <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>{{ priority }}</priority>
+  </url>
+    {%- endunless -%}
+  {%- endfor -%}
+
+</urlset>
+

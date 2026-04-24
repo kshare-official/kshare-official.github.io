@@ -1,0 +1,89 @@
+---
+layout: default
+title: About GDFLIXs - Multi-Niche Content Platform
+description: Learn about GDFLIXs, a comprehensive platform for diverse content across multiple niches and categories
+permalink: /about/
+date: 2025-11-15 10:45:30
+last_modified_at: 2025-11-16 11:23:15
+---
+
+<!-- Breadcrumb Schema -->
+{% include breadcrumb.html page_url="/about/" %}
+
+<!-- Hero Section -->
+{% include hero.html title="About GDFLIXs" subtitle="Your comprehensive platform for diverse, high-quality content" theme="dark" aria_label="About page header" breadcrumb=breadcrumb_array %}
+
+<!-- About Content Section -->
+<section class="py-16 w-full" aria-label="About content" itemscope itemtype="https://schema.org/AboutPage">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold mb-6 text-gray-900">Welcome to GDFLIXs! 👋</h2>
+
+        <p class="text-gray-700 mb-8 leading-relaxed">
+            GDFLIXs is a dynamic, multi-niche content platform dedicated to delivering high-quality articles,
+            insights, and guides across diverse topics. Whether you're interested in entertainment, technology,
+            lifestyle, business, health, or any other niche, you'll find expertly curated content that informs,
+            inspires, and engages.
+        </p>
+
+        <h3 class="text-3xl font-bold mb-4 mt-12 text-gray-900">What We Cover</h3>
+        <p class="text-gray-700 mb-4">
+            Our platform features comprehensive content across multiple niches:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 mb-8">
+            <li><strong>Entertainment:</strong> Movies, shows, streaming reviews, and industry trends</li>
+            <li><strong>Technology:</strong> Latest tech news, gadgets, software, and digital innovations</li>
+            <li><strong>Lifestyle:</strong> Personal development, wellness, travel, and daily living tips</li>
+            <li><strong>Business:</strong> Entrepreneurship, career advice, market insights, and strategies</li>
+            <li><strong>Health & Wellness:</strong> Fitness, nutrition, mental health, and wellness guides</li>
+            <li><strong>And Much More:</strong> We continuously expand our content categories to serve diverse interests</li>
+        </ul>
+
+        <h3 class="text-3xl font-bold mb-4 mt-12 text-gray-900">Our Mission</h3>
+        <p class="text-gray-700 mb-8 leading-relaxed">
+            At GDFLIXs, our mission is to be your go-to resource for reliable, engaging, and diverse content.
+            We believe in the power of knowledge sharing and aim to create a platform where readers can explore
+            multiple topics, discover new interests, and stay informed about the world around them. We're committed
+            to providing well-researched, thoughtfully written articles that add real value to your life.
+        </p>
+
+        <h3 class="text-3xl font-bold mb-4 mt-12 text-gray-900">Why We Started GDFLIXs</h3>
+        <p class="text-gray-700 mb-4">
+            We recognized the need for a unified platform that brings together quality content from various niches.
+            Rather than jumping between different websites, readers can find diverse, high-quality articles all in one place.
+            Our goals include:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 mb-8">
+            <li>Provide authoritative, well-researched content across multiple niches</li>
+            <li>Help readers discover new topics and expand their knowledge</li>
+            <li>Build a vibrant community of curious, engaged learners</li>
+            <li>Maintain editorial excellence and factual accuracy</li>
+            <li>Create a user-friendly platform that's easy to navigate and explore</li>
+        </ul>
+
+        <h3 class="text-3xl font-bold mb-4 mt-12 text-gray-900">Get Involved</h3>
+        <p class="text-gray-700 mb-6">
+            We'd love to connect with our readers and community! Here's how you can reach out:
+        </p>
+        <ul class="space-y-3">
+            <li><a href="mailto:{{ site.email }}" class="text-blue-600 hover:text-blue-800 transition-colors">📧 Email us</a> - Send us your feedback, suggestions, or inquiries</li>
+            {% if site.twitter_username %}
+            <li><a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors">🐦 Follow on Twitter</a> - Stay updated with our latest articles and news</li>
+            {% endif %}
+            {% if site.github_username %}
+            <li><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors">💻 GitHub</a> - Check out our open-source projects</li>
+            {% endif %}
+            <li><a href="{{ '/contact' | relative_url }}" class="text-blue-600 hover:text-blue-800 transition-colors">📝 Contact Form</a> - Use our contact page for detailed inquiries</li>
+        </ul>
+
+        <h3 class="text-3xl font-bold mb-4 mt-12 text-gray-900">Legal & Policies</h3>
+        <p class="text-gray-700 mb-6">
+            Please review our important policies:
+        </p>
+        <ul class="space-y-3">
+            <li><a href="{{ '/privacy' | relative_url }}" class="text-blue-600 hover:text-blue-800 transition-colors">🔒 Privacy Policy</a> - How we handle your data</li>
+            <li><a href="{{ '/terms' | relative_url }}" class="text-blue-600 hover:text-blue-800 transition-colors">⚖️ Terms of Service</a> - Our terms and conditions</li>
+            <li><a href="{{ '/disclaimer' | relative_url }}" class="text-blue-600 hover:text-blue-800 transition-colors">⚠️ Disclaimer</a> - Important disclaimers and limitations</li>
+        </ul>
+    </div>
+</section>
+

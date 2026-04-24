@@ -1,0 +1,129 @@
+---
+layout: default
+---
+
+<!-- Breadcrumb Schema -->
+{% include breadcrumb.html page_url=page.url page_title=page.title %}
+
+<!-- Hero Section with Post Metadata -->
+{% include hero.html
+    title=page.title
+    subtitle=page.description
+    theme="dark"
+    aria_label="Blog post header"
+    breadcrumb=breadcrumb_array
+    itemtype="https://schema.org/BlogPosting"
+    itemprop_headline="headline"
+    date=page.date
+    itemprop_date="datePublished"
+    author=page.author
+    itemprop_author="author"
+    reading_time=page.reading_time
+    last_modified_at=page.last_modified_at
+    itemprop_modified="dateModified"
+%}
+
+<!-- Article Content Section -->
+<article class="py-12 w-full" itemscope itemtype="https://schema.org/BlogPosting" role="main"
+    aria-label="Blog post content">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 flex-wrap md:flex-row flex-col">
+            <div class="flex-1 min-w-0">
+                <!-- Featured Image -->
+                <figure class="mb-12">
+                    {% if page.image %}
+                    <img src="{{ page.image }}" alt="{{ page.title }}" itemprop="image"
+                        class="w-full max-h-96 object-cover rounded-lg shadow-lg" data-check-image="true">
+                    {% else %}
+                    <img src="{{ '/assets/images/placeholder.svg' | relative_url }}" alt="No image available"
+                        class="w-full max-h-96 object-cover rounded-lg shadow-lg">
+                    {% endif %}
+                    {% if page.image_alt %}
+                    <figcaption class="text-center text-gray-600 text-sm mt-4">{{ page.image_alt }}</figcaption>
+                    {% endif %}
+                </figure>
+
+                <!-- Article Body -->
+                <div class="prose max-w-none mb-12 post-content" itemprop="articleBody">
+                    {{ content | reading_time }}
+                </div>
+
+                <!-- Tags -->
+                {% if page.tags %}
+                <div class="flex flex-wrap gap-3 mb-8">
+                    {% for tag in page.tags %}
+                    <a href="{{ '/tags/' | relative_url }}{{ tag | slugify }}/"
+                        class="text-blue-600 text-sm transition-all flex items-center gap-1">
+                        <i data-lucide="tag" style="width: 16px; height: 16px;"></i> {{ tag }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Categories -->
+                {% if page.categories %}
+                <footer class="border-t-2 border-gray-200 pt-6 mb-12">
+                    <div class="flex flex-wrap items-center text-gray-700">
+                        <strong class="text-gray-900 text-sm">Categories:</strong>
+                        {% for category in page.categories %}
+                        <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}/"
+                            class="text-blue-600 hover:text-blue-800 transition-colors ml-2 flex items-center gap-1 text-sm">
+                            <i data-lucide="folder" style="width: 16px; height: 16px;"></i>
+                            {{ category }}</a>
+                        {% unless forloop.last %}<span class="text-gray-400">,</span>{% endunless %}
+                        {% endfor %}
+                    </div>
+                </footer>
+                {% endif %}
+
+                <!-- Related Posts -->
+                {% if site.posts.size > 1 %}
+                <section class="mb-12">
+                    <div class="flex items-center gap-3 mb-8">
+                        <i data-lucide="link-2" class="text-blue-600" style="width: 32px; height: 32px;"></i>
+                        <h3 class="text-3xl font-bold text-blue-600">Related Posts</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        {% assign current_post = page %}
+                        {% for post in site.posts limit: 3 %}
+                        {% unless post.url == current_post.url %}
+                        <li
+                            class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 p-5 bg-gray-50 rounded-lg hover:bg-blue-50 hover:shadow-md transition border-l-4 border-blue-600">
+                            <div class="flex-1">
+                                <a href="{{ post.url | relative_url }}"
+                                    class="text-lg font-semibold text-gray-900 hover:text-blue-600 transition">{{
+                                    post.title }}</a>
+                                <p class="text-gray-600 text-sm mt-2">{{ post.excerpt | strip_html | truncatewords: 25
+                                    }}</p>
+                                <div class="flex flex-wrap gap-4 mt-3 text-sm">
+                                    <time datetime="{{ post.date | date_to_xmlschema }}"
+                                        class="text-gray-600 flex items-center gap-1">
+                                        <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+                                        {{ post.date | date: "%b %d, %Y" }}
+                                    </time>
+                                    {% if post.author %}
+                                    <span class="text-gray-600 flex items-center gap-1">
+                                        <i data-lucide="user" style="width: 14px; height: 14px;"></i>
+                                        {{ post.author }}
+                                    </span>
+                                    {% endif %}
+                                    {% if post.reading_time %}
+                                    <span class="text-gray-600 flex items-center gap-1">
+                                        <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                                        {{ post.reading_time }} min read
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                        {% endunless %}
+                        {% endfor %}
+                    </ul>
+                </section>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            {% include sidebar.html %}
+        </div>
+    </div>
+</article>

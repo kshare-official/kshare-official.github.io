@@ -1,0 +1,59 @@
+<!-- Pagination Component -->
+{% if paginator.total_pages > 1 %}
+<nav class="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-gray-200" aria-label="Pagination">
+    <!-- Previous Button -->
+    {% if paginator.previous_page %}
+        {% if paginator.previous_page == 1 %}
+            <a href="{{ '/' | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+                <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
+                Previous
+            </a>
+        {% else %}
+            <a href="{{ paginator.previous_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+                <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
+                Previous
+            </a>
+        {% endif %}
+    {% else %}
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-400 cursor-not-allowed font-medium">
+            <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
+            Previous
+        </span>
+    {% endif %}
+
+    <!-- Page Numbers -->
+    <div class="flex items-center gap-1">
+        {% for page_num in (1..paginator.total_pages) %}
+            {% if page_num == paginator.page %}
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-blue-600 text-white font-semibold">
+                    {{ page_num }}
+                </span>
+            {% else %}
+                {% if page_num == 1 %}
+                    <a href="{{ '/' | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+                        {{ page_num }}
+                    </a>
+                {% else %}
+                    <a href="{{ site.paginate_path | replace: ':num', page_num | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+                        {{ page_num }}
+                    </a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Next Button -->
+    {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-all font-medium">
+            Next
+            <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
+        </a>
+    {% else %}
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-400 cursor-not-allowed font-medium">
+            Next
+            <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
+        </span>
+    {% endif %}
+</nav>
+{% endif %}
+

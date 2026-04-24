@@ -1,0 +1,58 @@
+---
+layout: default
+title: Tags
+description: Browse posts by tags
+permalink: /tags/
+sitemap: false
+date: 2025-11-15 17:08:41
+last_modified_at: 2025-11-16 07:19:56
+---
+
+<!-- Breadcrumb Schema -->
+{% include breadcrumb.html page_url="/tags/" %}
+
+<!-- Hero Section -->
+{% include hero.html title="Tags" subtitle="Browse posts by topic" theme="dark" aria_label="Tags page
+header" breadcrumb=breadcrumb_array %}
+
+<!-- Tags Content Section -->
+<section class="py-16 w-full" aria-label="Tags listing" itemscope itemtype="https://schema.org/CollectionPage">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 flex-wrap md:flex-row flex-col">
+            <div class="flex-1 min-w-0">
+                <p class="text-lg text-gray-700 mb-6">
+                    Explore all content tags available on GDFLIXs. Each tag represents a specific topic or theme,
+                    helping you discover articles related to your interests.
+                </p>
+                <div class="tags-page flex flex-wrap items-center gap-3">
+                    {% assign tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+
+                    {% for tag in tags %}
+                    {% if tag != "" %}
+                    {% assign tag_posts = site.posts | where_exp: "post", "post.tags contains tag" %}
+                    <a href="{{ '/tags/' | relative_url }}{{ tag | slugify }}/" class="group">
+                        <div
+                            class="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all border border-gray-200 px-4 py-2 text-center h-full flex gap-2 items-center justify-center w-full">
+                            <i data-lucide="tag"
+                                class="text-blue-600 group-hover:scale-110 transition-transform"></i>
+                            <h3 class="!text-lg font-bold text-blue-600 group-hover:text-blue-800 transition">
+                                {{ tag }} (<span class="font-semibold text-blue-600">{{ tag_posts.size |
+                                    pluralize: 'post',
+                                    'posts' }}</span>)</h3>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if tags.size == 0 %}
+                    <p class="text-center text-gray-600 py-16 col-span-full">No tags yet. Check back soon!</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            {% include sidebar.html %}
+        </div>
+    </div>
+</section>
