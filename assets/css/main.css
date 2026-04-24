@@ -57,14 +57,14 @@
 }
 
 .prose a {
-    color: #667eea;
+    color: #2563eb;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .prose a:hover {
-    color: #764ba2;
+    color: #1d4ed8;
     text-decoration: underline;
 }
 
@@ -354,5 +354,12 @@ button:hover [data-lucide] {
 }
 
 #table-of-contents+ol li a {
+    color: #1d4ed8;
     text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+#table-of-contents+ol li a:hover {
+    color: #1e40af;
+    text-decoration: underline;
 }

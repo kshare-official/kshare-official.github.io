@@ -1,165 +1,186 @@
 {% if include.theme == "dark" %}
-    <!-- Dark Theme Hero -->
-    <header class="bg-black border-b border-gray-900 text-white py-20 w-full" role="{{ include.role | default: 'banner' }}" {% if include.aria_label %}aria-label="{{ include.aria_label }}"{% endif %} {% if include.itemtype %}itemscope itemtype="{{ include.itemtype }}"{% endif %}>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-5xl md:text-6xl font-bold mb-2" {% if include.itemprop_headline %}itemprop="{{ include.itemprop_headline }}"{% endif %}>{{ include.title }}</h1>
-            {% if include.subtitle %}
-            <p class="text-gray-300">{{ include.subtitle }}</p>
-            {% endif %}
+<!-- Dark Theme Hero -->
+<header class="bg-black border-b border-gray-900 text-white py-20 w-full min-h-[300px]"
+  role="{{ include.role | default: 'banner' }}" {% if include.aria_label %}aria-label="{{ include.aria_label }}" {%
+  endif %} {% if include.itemtype %}itemscope itemtype="{{ include.itemtype }}" {% endif %}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-5xl md:text-6xl font-bold mb-2" {% if include.itemprop_headline
+      %}itemprop="{{ include.itemprop_headline }}" {% endif %}>{{ include.title }}</h1>
+    {% if include.subtitle %}
+    <p class="text-gray-300">{{ include.subtitle }}</p>
+    {% endif %}
 
-            <!-- Post Metadata (if provided) -->
-            {% if include.date or include.author or include.reading_time or include.last_modified_at %}
-            <div class="flex flex-wrap gap-2 text-gray-400 text-sm my-4">
-                {% if include.date %}
-                <time datetime="{{ include.date | date_to_xmlschema }}" {% if include.itemprop_date %}itemprop="{{ include.itemprop_date }}"{% endif %} class="flex items-center gap-2">
-                    <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
-                    {{ include.date | date: "%B %d, %Y" }}
-                </time>
-                {% endif %}
-                {% if include.author %}
-                <span {% if include.itemprop_author %}itemprop="{{ include.itemprop_author }}" itemscope itemtype="https://schema.org/Person"{% endif %} class="flex items-center gap-2">
-                    <i data-lucide="user" style="width: 18px; height: 18px;"></i>
-                    <span {% if include.itemprop_author %}itemprop="name"{% endif %}>{{ include.author }}</span>
-                </span>
-                {% endif %}
-                {% if include.reading_time %}
-                <span class="flex items-center gap-2">
-                    <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
-                    {{ include.reading_time }} min read
-                </span>
-                {% endif %}
-                {% if include.last_modified_at %}
-                <time datetime="{{ include.last_modified_at | date_to_xmlschema }}" {% if include.itemprop_modified %}itemprop="{{ include.itemprop_modified }}"{% endif %} class="flex items-center gap-2">
-                    <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
-                    Updated: {{ include.last_modified_at | date: "%B %d, %Y" }}
-                </time>
-                {% endif %}
-            </div>
-            {% endif %}
+    <!-- Post Metadata (if provided) -->
+    {% if include.date or include.author or include.reading_time or include.last_modified_at %}
+    <div class="flex flex-wrap gap-2 text-gray-400 text-sm my-4">
+      {% if include.date %}
+      <time datetime="{{ include.date | date_to_xmlschema }}" {% if include.itemprop_date
+        %}itemprop="{{ include.itemprop_date }}" {% endif %} class="flex items-center gap-2">
+        <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+        {{ include.date | date: "%B %d, %Y" }}
+      </time>
+      {% endif %}
+      {% if include.author %}
+      <span {% if include.itemprop_author %}itemprop="{{ include.itemprop_author }}" itemscope
+        itemtype="https://schema.org/Person" {% endif %} class="flex items-center gap-2">
+        <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+        <span {% if include.itemprop_author %}itemprop="name" {% endif %}>{{ include.author }}</span>
+      </span>
+      {% endif %}
+      {% if include.reading_time %}
+      <span class="flex items-center gap-2">
+        <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
+        {{ include.reading_time }} min read
+      </span>
+      {% endif %}
+      {% if include.last_modified_at %}
+      <time datetime="{{ include.last_modified_at | date_to_xmlschema }}" {% if include.itemprop_modified
+        %}itemprop="{{ include.itemprop_modified }}" {% endif %} class="flex items-center gap-2">
+        <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
+        Updated: {{ include.last_modified_at | date: "%B %d, %Y" }}
+      </time>
+      {% endif %}
+    </div>
+    {% endif %}
 
-            <!-- Visual Breadcrumb Navigation (not on homepage) -->
-            {% if include.breadcrumb and page.url != "/" %}
-            <nav class="mt-2 flex items-center gap-1 flex-wrap justify-start text-sm text-gray-400" aria-label="Breadcrumb">
-                {% assign breadcrumb_items = include.breadcrumb | split: '","position":' %}
-                {% assign item_count = 0 %}
-                {% for item in breadcrumb_items %}
-                  {% if item contains '"name":"' %}
-                    {% assign item_count = item_count | plus: 1 %}
-                    {% assign name = item | split: '"name":"' | last | split: '"' | first %}
-                    {% assign url = item | split: '"item":"' | last | split: '"' | first %}
-                    {% if item_count == 1 %}
-                      <a href="/" class="hover:text-white transition-colors inline-flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" width="16" height="16"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                        <span>{{ name }}</span>
-                      </a>
-                    {% elsif forloop.last %}
-                      <span class="mx-1">/</span>
-                      <span class="text-white font-medium">{{ name }}</span>
-                    {% else %}
-                      <span class="mx-1">/</span>
-                      {% assign breadcrumb_url = url | replace: site.url, '' %}
-                      <a href="{{ breadcrumb_url }}" class="hover:text-white transition-colors">{{ name }}</a>
-                    {% endif %}
-                  {% endif %}
-                {% endfor %}
-            </nav>
-            {% endif %}
+    <!-- Visual Breadcrumb Navigation (not on homepage) -->
+    {% if include.breadcrumb and page.url != "/" %}
+    <nav class="mt-2 flex items-center gap-1 flex-wrap justify-start text-sm text-gray-400" aria-label="Breadcrumb">
+      {% assign breadcrumb_items = include.breadcrumb | split: '","position":' %}
+      {% assign item_count = 0 %}
+      {% for item in breadcrumb_items %}
+      {% if item contains '"name":"' %}
+      {% assign item_count = item_count | plus: 1 %}
+      {% assign name = item | split: '"name":"' | last | split: '"' | first %}
+      {% assign url = item | split: '"item":"' | last | split: '"' | first %}
+      {% if item_count == 1 %}
+      <a href="/" class="hover:text-white transition-colors inline-flex items-center gap-1">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" width="16" height="16">
+          <path
+            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+          </path>
+        </svg>
+        <span>{{ name }}</span>
+      </a>
+      {% elsif forloop.last %}
+      <span class="mx-1">/</span>
+      <span class="text-white font-medium">{{ name }}</span>
+      {% else %}
+      <span class="mx-1">/</span>
+      {% assign breadcrumb_url = url | replace: site.url, '' %}
+      <a href="{{ breadcrumb_url }}" class="hover:text-white transition-colors">{{ name }}</a>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </nav>
+    {% endif %}
 
-            {% if include.cta_text and include.cta_url %}
-            <div class="mt-4">
-                <a href="{{ include.cta_url }}" class="inline-block bg-white text-black px-8 py-3 rounded-lg text-sm hover:bg-gray-100 transition-colors">
-                    {{ include.cta_text }}
-                </a>
-            </div>
-            {% endif %}
-        </div>
+    {% if include.cta_text and include.cta_url %}
+    <div class="mt-4">
+      <a href="{{ include.cta_url }}"
+        class="inline-block bg-white text-black px-8 py-3 rounded-lg text-sm hover:bg-gray-100 transition-colors">
+        {{ include.cta_text }}
+      </a>
+    </div>
+    {% endif %}
+  </div>
 
-        <!-- Breadcrumb LD+JSON Schema -->
-        {% if include.breadcrumb %}
-        <script type="application/ld+json">
+  <!-- Breadcrumb LD+JSON Schema -->
+  {% if include.breadcrumb %}
+  <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": {{ include.breadcrumb }}
         }
         </script>
-        {% endif %}
-    </header>
+  {% endif %}
+</header>
 {% else %}
-    <!-- Purple Gradient Theme Hero (default) -->
-    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 w-full" role="{{ include.role | default: 'banner' }}" {% if include.aria_label %}aria-label="{{ include.aria_label }}"{% endif %} {% if include.itemtype %}itemscope itemtype="{{ include.itemtype }}"{% endif %}>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-5xl md:text-6xl font-bold mb-2" {% if include.itemprop_headline %}itemprop="{{ include.itemprop_headline }}"{% endif %}>{{ include.title }}</h1>
-            {% if include.subtitle %}
-            <p class="text-blue-100 opacity-95">{{ include.subtitle }}</p>
-            {% endif %}
+<!-- Purple Gradient Theme Hero (default) -->
+<header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 w-full min-h-[300px]"
+  role="{{ include.role | default: 'banner' }}" {% if include.aria_label %}aria-label="{{ include.aria_label }}" {%
+  endif %} {% if include.itemtype %}itemscope itemtype="{{ include.itemtype }}" {% endif %}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-5xl md:text-6xl font-bold mb-2" {% if include.itemprop_headline
+      %}itemprop="{{ include.itemprop_headline }}" {% endif %}>{{ include.title }}</h1>
+    {% if include.subtitle %}
+    <p class="text-blue-100 opacity-95">{{ include.subtitle }}</p>
+    {% endif %}
 
-            <!-- Post Metadata (if provided) -->
-            {% if include.date or include.author or include.reading_time or include.last_modified_at %}
-            <div class="flex flex-wrap gap-6 text-blue-200 text-sm mt-4">
-                {% if include.date %}
-                <time datetime="{{ include.date | date_to_xmlschema }}" {% if include.itemprop_date %}itemprop="{{ include.itemprop_date }}"{% endif %} class="flex items-center gap-2">
-                    <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
-                    {{ include.date | date: "%B %d, %Y" }}
-                </time>
-                {% endif %}
-                {% if include.author %}
-                <span {% if include.itemprop_author %}itemprop="{{ include.itemprop_author }}" itemscope itemtype="https://schema.org/Person"{% endif %} class="flex items-center gap-2">
-                    <i data-lucide="user" style="width: 18px; height: 18px;"></i>
-                    <span {% if include.itemprop_author %}itemprop="name"{% endif %}>{{ include.author }}</span>
-                </span>
-                {% endif %}
-                {% if include.reading_time %}
-                <span class="flex items-center gap-2">
-                    <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
-                    {{ include.reading_time }} min read
-                </span>
-                {% endif %}
-                {% if include.last_modified_at %}
-                <time datetime="{{ include.last_modified_at | date_to_xmlschema }}" {% if include.itemprop_modified %}itemprop="{{ include.itemprop_modified }}"{% endif %} class="flex items-center gap-2">
-                    <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
-                    Updated: {{ include.last_modified_at | date: "%B %d, %Y" }}
-                </time>
-                {% endif %}
-            </div>
-            {% endif %}
+    <!-- Post Metadata (if provided) -->
+    {% if include.date or include.author or include.reading_time or include.last_modified_at %}
+    <div class="flex flex-wrap gap-6 text-blue-200 text-sm mt-4">
+      {% if include.date %}
+      <time datetime="{{ include.date | date_to_xmlschema }}" {% if include.itemprop_date
+        %}itemprop="{{ include.itemprop_date }}" {% endif %} class="flex items-center gap-2">
+        <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+        {{ include.date | date: "%B %d, %Y" }}
+      </time>
+      {% endif %}
+      {% if include.author %}
+      <span {% if include.itemprop_author %}itemprop="{{ include.itemprop_author }}" itemscope
+        itemtype="https://schema.org/Person" {% endif %} class="flex items-center gap-2">
+        <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+        <span {% if include.itemprop_author %}itemprop="name" {% endif %}>{{ include.author }}</span>
+      </span>
+      {% endif %}
+      {% if include.reading_time %}
+      <span class="flex items-center gap-2">
+        <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
+        {{ include.reading_time }} min read
+      </span>
+      {% endif %}
+      {% if include.last_modified_at %}
+      <time datetime="{{ include.last_modified_at | date_to_xmlschema }}" {% if include.itemprop_modified
+        %}itemprop="{{ include.itemprop_modified }}" {% endif %} class="flex items-center gap-2">
+        <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
+        Updated: {{ include.last_modified_at | date: "%B %d, %Y" }}
+      </time>
+      {% endif %}
+    </div>
+    {% endif %}
 
-            <!-- Visual Breadcrumb Navigation (not on homepage) -->
-            {% if include.breadcrumb and page.url != "/" %}
-            <nav class="mt-2 flex items-center gap-1 flex-wrap justify-start text-sm text-blue-200" aria-label="Breadcrumb">
-                {% assign breadcrumb_items = include.breadcrumb | split: '","position":' %}
-                {% assign item_count = 0 %}
-                {% for item in breadcrumb_items %}
-                  {% if item contains '"name":"' %}
-                    {% assign item_count = item_count | plus: 1 %}
-                    {% assign name = item | split: '"name":"' | last | split: '"' | first %}
-                    {% assign url = item | split: '"item":"' | last | split: '"' | first %}
-                    {% if item_count == 1 %}
-                      <a href="/" class="hover:text-white transition-colors inline-flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" width="16" height="16"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                        <span>{{ name }}</span>
-                      </a>
-                    {% elsif forloop.last %}
-                      <span class="mx-1">/</span>
-                      <span class="text-white font-medium">{{ name }}</span>
-                    {% else %}
-                      <span class="mx-1">/</span>
-                      {% assign breadcrumb_url = url | replace: site.url, '' %}
-                      <a href="{{ breadcrumb_url }}" class="hover:text-white transition-colors">{{ name }}</a>
-                    {% endif %}
-                  {% endif %}
-                {% endfor %}
-            </nav>
-            {% endif %}
+    <!-- Visual Breadcrumb Navigation (not on homepage) -->
+    {% if include.breadcrumb and page.url != "/" %}
+    <nav class="mt-2 flex items-center gap-1 flex-wrap justify-start text-sm text-blue-200" aria-label="Breadcrumb">
+      {% assign breadcrumb_items = include.breadcrumb | split: '","position":' %}
+      {% assign item_count = 0 %}
+      {% for item in breadcrumb_items %}
+      {% if item contains '"name":"' %}
+      {% assign item_count = item_count | plus: 1 %}
+      {% assign name = item | split: '"name":"' | last | split: '"' | first %}
+      {% assign url = item | split: '"item":"' | last | split: '"' | first %}
+      {% if item_count == 1 %}
+      <a href="/" class="hover:text-white transition-colors inline-flex items-center gap-1">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" width="16" height="16">
+          <path
+            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+          </path>
+        </svg>
+        <span>{{ name }}</span>
+      </a>
+      {% elsif forloop.last %}
+      <span class="mx-1">/</span>
+      <span class="text-white font-medium">{{ name }}</span>
+      {% else %}
+      <span class="mx-1">/</span>
+      {% assign breadcrumb_url = url | replace: site.url, '' %}
+      <a href="{{ breadcrumb_url }}" class="hover:text-white transition-colors">{{ name }}</a>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </nav>
+    {% endif %}
 
-            {% if include.cta_text and include.cta_url %}
-            <div class="mt-4">
-                <a href="{{ include.cta_url }}" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg text-sm hover:bg-gray-100 transition-colors">
-                    {{ include.cta_text }}
-                </a>
-            </div>
-            {% endif %}
-        </div>
-    </header>
+    {% if include.cta_text and include.cta_url %}
+    <div class="mt-4">
+      <a href="{{ include.cta_url }}"
+        class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg text-sm hover:bg-gray-100 transition-colors">
+        {{ include.cta_text }}
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</header>
 {% endif %}
-
