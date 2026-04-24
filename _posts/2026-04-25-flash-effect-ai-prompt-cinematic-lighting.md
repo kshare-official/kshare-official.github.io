@@ -3,7 +3,7 @@ title: Flash Effect AI Prompt (2026) – Cinematic DSLR Lighting for Ultra-Reali
 date: 2026-04-25 01:45:00 +0530
 layout: post
 status: published
-image: https://kshare.in/storage/prompt/after-images/flash-effect-prompt-cinematic-lighting-after.png
+image: https://kshare.in/storage/prompt/after-images/large/flash-effect-prompt-cinematic-lighting-after.webp
 categories:
   - AI Prompts
   - Photography

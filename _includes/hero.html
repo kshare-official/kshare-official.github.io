@@ -16,27 +16,27 @@
       {% if include.date %}
       <time datetime="{{ include.date | date_to_xmlschema }}" {% if include.itemprop_date
         %}itemprop="{{ include.itemprop_date }}" {% endif %} class="flex items-center gap-2">
-        <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
         {{ include.date | date: "%B %d, %Y" }}
       </time>
       {% endif %}
       {% if include.author %}
       <span {% if include.itemprop_author %}itemprop="{{ include.itemprop_author }}" itemscope
         itemtype="https://schema.org/Person" {% endif %} class="flex items-center gap-2">
-        <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <span {% if include.itemprop_author %}itemprop="name" {% endif %}>{{ include.author }}</span>
       </span>
       {% endif %}
       {% if include.reading_time %}
       <span class="flex items-center gap-2">
-        <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         {{ include.reading_time }} min read
       </span>
       {% endif %}
       {% if include.last_modified_at %}
       <time datetime="{{ include.last_modified_at | date_to_xmlschema }}" {% if include.itemprop_modified
         %}itemprop="{{ include.itemprop_modified }}" {% endif %} class="flex items-center gap-2">
-        <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
         Updated: {{ include.last_modified_at | date: "%B %d, %Y" }}
       </time>
       {% endif %}
@@ -94,6 +94,18 @@
             "itemListElement": {{ include.breadcrumb }}
         }
         </script>
+    <script defer>
+        window.addEventListener('load', function () {
+            if (typeof lucide !== 'undefined') {
+                // Delay icon creation to keep main thread free for LCP
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(() => lucide.createIcons());
+                } else {
+                    setTimeout(() => lucide.createIcons(), 100);
+                }
+            }
+        });
+    </script>
   {% endif %}
 </header>
 {% else %}
@@ -114,27 +126,27 @@
       {% if include.date %}
       <time datetime="{{ include.date | date_to_xmlschema }}" {% if include.itemprop_date
         %}itemprop="{{ include.itemprop_date }}" {% endif %} class="flex items-center gap-2">
-        <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
         {{ include.date | date: "%B %d, %Y" }}
       </time>
       {% endif %}
       {% if include.author %}
       <span {% if include.itemprop_author %}itemprop="{{ include.itemprop_author }}" itemscope
         itemtype="https://schema.org/Person" {% endif %} class="flex items-center gap-2">
-        <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <span {% if include.itemprop_author %}itemprop="name" {% endif %}>{{ include.author }}</span>
       </span>
       {% endif %}
       {% if include.reading_time %}
       <span class="flex items-center gap-2">
-        <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         {{ include.reading_time }} min read
       </span>
       {% endif %}
       {% if include.last_modified_at %}
       <time datetime="{{ include.last_modified_at | date_to_xmlschema }}" {% if include.itemprop_modified
         %}itemprop="{{ include.itemprop_modified }}" {% endif %} class="flex items-center gap-2">
-        <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
         Updated: {{ include.last_modified_at | date: "%B %d, %Y" }}
       </time>
       {% endif %}
