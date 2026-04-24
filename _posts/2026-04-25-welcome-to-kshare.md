@@ -1,4 +1,4 @@
-﻿---
+---
 title: Welcome to KShare - Your AI Prompts Library & Resource Hub
 date: 2026-04-25 01:15:00 +0530
 layout: post

@@ -22,20 +22,20 @@ social:
     - "https://linkedin.com/company/kshare"
 
 # ===============================================
-# ðŸ”§ Build Settings
+# Build Settings
 # ===============================================
 markdown: kramdown
 highlighter: rouge
 
 # Permalink structure (SEO friendly)
-# â†’ Uses only the post title in the URL (no categories)
+# Uses only the post title in the URL (no categories)
 permalink: /:title/
 
 paginate: 10
 paginate_path: "/blog/page:num/"
 
 # ===============================================
-# ðŸ“‚ Collections
+# Collections
 # ===============================================
 collections:
   posts:
@@ -43,7 +43,7 @@ collections:
     permalink: /:title/
 
 # ===============================================
-# âš™ï¸ Plugins
+# Plugins
 # ===============================================
 plugins:
   - jekyll-feed
@@ -55,7 +55,7 @@ plugins:
   - jekyll-minifier
 
 # ===============================================
-# ðŸ—‚ï¸ Jekyll Archives Configuration
+# Jekyll Archives Configuration
 # ===============================================
 jekyll-archives:
   enabled:
@@ -67,7 +67,7 @@ jekyll-archives:
     tag: /tags/:name/
 
 # ===============================================
-# ðŸ“ Include & Exclude Settings
+# Include & Exclude Settings
 # ===============================================
 include:
   - _pages
@@ -81,17 +81,17 @@ exclude:
   - vendor
 
 # ===============================================
-# ðŸŒ Timezone
+# Timezone
 # ===============================================
 timezone: Asia/Kolkata
 
 # ===============================================
-# ðŸ“Š Google Analytics (Optional)
+# Google Analytics (Optional)
 # ===============================================
 google_analytics: ""
 
 # ===============================================
-# ðŸš€ Performance & Caching (GitHub Pages)
+# Performance & Caching (GitHub Pages)
 # ===============================================
 # Note: GitHub Pages automatically handles caching
 # These settings optimize for GitHub Pages CDN
@@ -108,5 +108,3 @@ compress_html:
   profile: false
   ignore:
     envs: []
-
-
