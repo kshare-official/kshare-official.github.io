@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css -m && node -e \"const fs=require('fs');let css=fs.readFileSync('./assets/css/style.css','utf8');css=css.replace(/\\/\\*[\\s\\S]*?\\*\\//g,'').trim();fs.writeFileSync('./assets/css/style.css',css.trim());console.log('✓ Fully minified CSS (no comments, no empty lines)');\"",
+    "build:css": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css -m && node -e \"const fs=require('fs'); let css=fs.readFileSync('./assets/css/style.css','utf8'); css=css.replace(/\\/\\*[\\s\\S]*?\\*\\//g,'').trim(); fs.writeFileSync('./assets/css/style.css',css.trim()); if(!fs.existsSync('./_includes')) fs.mkdirSync('./_includes'); fs.writeFileSync('./_includes/critical.css',css.trim()); console.log('✓ Fully minified CSS and updated includes');\"",
     "build": "npm run build:css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

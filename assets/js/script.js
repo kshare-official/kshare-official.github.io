@@ -77,7 +77,7 @@ function calculateReadingTime() {
     const postContent = document.querySelector('.post-content');
     if (!postContent) return;
 
-    const text = postContent.innerText;
+    const text = postContent.textContent;
     const wordsPerMinute = 200;
     const wordCount = text.split(/\s+/).length;
     const readingTime = Math.ceil(wordCount / wordsPerMinute);

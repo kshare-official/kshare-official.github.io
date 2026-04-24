@@ -52,9 +52,11 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <!-- Main Stylesheet -->
+    <!-- Critical CSS Inlined to eliminate render blocking -->
+    <style>
+        {% include "critical.css" %}
+    </style>
     <link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/roboto-v51-latin.woff2' | relative_url }}" crossorigin>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=1.0.1' | relative_url }}">
 
     <!-- Favicon and Icons -->
     <script type="application/ld+json">
