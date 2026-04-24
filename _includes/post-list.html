@@ -18,11 +18,11 @@
 {% assign posts_to_show = filtered_posts | slice: 0, limit %}
 {% endif %}
 
-<ul class="space-y-4">
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-8">
     {% for post in posts_to_show %}
-    <li>
+    <li class="flex">
         <article
-            class="flex flex-col gap-4 p-5 bg-white rounded-lg hover:shadow-md hover:bg-gray-50 transition-colors transition-shadow border-l-4 border-blue-600 shadow-sm border border-gray-100"
+            class="flex flex-col w-full gap-4 p-5 bg-white rounded-xl hover:shadow-xl hover:bg-gray-50 transition-all duration-300 border border-gray-100 shadow-sm overflow-hidden"
             itemscope itemtype="https://schema.org/BlogPosting">
 
             <div class="w-full h-48 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden relative">
