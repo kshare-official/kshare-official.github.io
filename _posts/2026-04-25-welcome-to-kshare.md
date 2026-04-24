@@ -46,13 +46,13 @@ We're thrilled to launch **KShare**, a revolutionary AI Prompts Library designed
 
 ## What is KShare?
 
-KShare is more than just a prompt collectionâ€”it's a comprehensive hub for creative AI tools and prompt engineering. Our mission is to provide you with:
+KShare is more than just a prompt collection—it's a comprehensive hub for creative AI tools and prompt engineering. Our mission is to provide you with:
 
-âœ… **Curated AI Prompts** - Tested prompts for Midjourney, DALL-E, Stable Diffusion, and more.
-âœ… **High-Quality Resources** - Guides on how to get the most out of your favorite AI tools.
-âœ… **Expert Insights** - Tips from experienced prompt engineers and digital creators.
-âœ… **Regular Updates** - Fresh prompts and tutorials added to keep up with the fast-moving AI landscape.
-âœ… **Easy Discovery** - Organized categories and tags to help you find the perfect prompt in seconds.
+✅ **Curated AI Prompts** - Tested prompts for Midjourney, DALL-E, Stable Diffusion, and more.
+✅ **High-Quality Resources** - Guides on how to get the most out of your favorite AI tools.
+✅ **Expert Insights** - Tips from experienced prompt engineers and digital creators.
+✅ **Regular Updates** - Fresh prompts and tutorials added to keep up with the fast-moving AI landscape.
+✅ **Easy Discovery** - Organized categories and tags to help you find the perfect prompt in seconds.
 
 ---
 
@@ -106,10 +106,10 @@ Follow us for the latest AI prompt releases and industry news.
 
 We're just getting started! Here's what you can expect from KShare:
 
-- ðŸŽ¨ **New Prompt Collections** - Expanding into niche artistic styles and technical diagrams.
-- ðŸŽ¥ **Video AI Prompts** - Preparing for the next wave of generative video tools.
-- ðŸ’¬ **Community Showcases** - A place for you to share what you've created with our prompts.
-- ðŸ“§ **Newsletter** - Curated AI news and prompt of the week delivered to your inbox.
+- 🎨 **New Prompt Collections** - Expanding into niche artistic styles and technical diagrams.
+- 🎥 **Video AI Prompts** - Preparing for the next wave of generative video tools.
+- 💬 **Community Showcases** - A place for you to share what you've created with our prompts.
+- 📧 **Newsletter** - Curated AI news and prompt of the week delivered to your inbox.
 
 ---
 
@@ -125,16 +125,16 @@ We'd love to hear from you! Whether you have prompt suggestions, feedback, or wa
 
 ## Featured Categories
 
-### ðŸ“¸ Photography
+### 📸 Photography
 Cinematic, portrait, and landscape prompts for hyper-realistic results.
 
-### ðŸŽ¨ Digital Art
+### 🎨 Digital Art
 Styles ranging from oil paintings to futuristic cyberpunk and minimalist vector art.
 
-### âœï¸ Copywriting
+### ✍️ Copywriting
 Professional prompts for marketing, social media, and creative storytelling.
 
-### ðŸ› ï¸ AI Tools
+### 🛠️ AI Tools
 Guides and prompts for specific platforms like ChatGPT, Claude, and Midjourney.
 
 ---
@@ -143,9 +143,9 @@ Guides and prompts for specific platforms like ChatGPT, Claude, and Midjourney.
 
 As a thank you for visiting KShare, we're offering:
 
-- ðŸ”“ **Full Access** to our entire prompt library.
-- ðŸš€ **Advanced Tips** on how to use negative prompts and aspect ratios.
-- ðŸ“¬ **Early Access** to upcoming prompt collections.
+- 🔓 **Full Access** to our entire prompt library.
+- 🚀 **Advanced Tips** on how to use negative prompts and aspect ratios.
+- 📬 **Early Access** to upcoming prompt collections.
 
 ---
 
@@ -167,20 +167,10 @@ Have questions or suggestions? We'd love to hear from you!
 
 ---
 
-**Welcome aboard! ðŸš€**
+**Welcome aboard! 🚀**
 
 *KShare Team*
 
 ---
 
 *Last Updated: April 25, 2026*
-
-
-**Welcome aboard! Ã°Å¸Å¡â‚¬**
-
-*KShare Team*
-
----
-
-*Last Updated: November 16, 2025*
-
