@@ -1,41 +1,41 @@
 # ==================================================
-# 🧭 KShare Site Configuration (SEO Optimized)
+# KShare Site Configuration (SEO Optimized)
 # ==================================================
 
 # Site Settings
-title: "KShare - Multi-Niche Content Platform"
-description: "Kshare is a comprehensive content platform covering diverse niches including entertainment, technology, lifestyle, business, health, and more. Discover expert articles, insights, and guides across multiple categories."
-author: "GDFLIXs Team"
+title: "KShare - AI Prompts Library for Image Generators & AI Tools"
+description: "Discover the best AI prompts for image generators and creative AI tools. Explore prompts for portraits, cinematic photos, posters, art and more."
+author: "KShare Team"
 email: "support@kshare.in"
-url: "https://kshare.github.io"
-baseurl: ""   # Leave empty for root domain (e.g., gdflixs.github.io)
+url: "https://kshare-official.github.io"
+baseurl: ""   # Leave empty for root domain (e.g., kshare-official.github.io)
 
 # SEO & Social
-keywords: "multi-niche content, articles, entertainment, technology, lifestyle, business, health, guides, insights, blog platform"
-twitter_username: "@gdflixs"
-github_username: "gdflixs"
+keywords: "AI prompts, image prompts, creative writing, AI art, prompt engineering, Midjourney prompts, ChatGPT prompts, AI tools"
+twitter_username: "@kshare"
+github_username: "kshare"
 social:
-  name: "GDFLIXs"
+  name: "KShare"
   links:
     - "https://x.com/kshare"
-    - "https://github.com/gdflixs"
-    - "https://linkedin.com/company/gdflixs"
+    - "https://github.com/kshare"
+    - "https://linkedin.com/company/kshare"
 
 # ===============================================
-# 🔧 Build Settings
+# ðŸ”§ Build Settings
 # ===============================================
 markdown: kramdown
 highlighter: rouge
 
 # Permalink structure (SEO friendly)
-# → Uses only the post title in the URL (no categories)
+# â†’ Uses only the post title in the URL (no categories)
 permalink: /:title/
 
 paginate: 10
 paginate_path: "/blog/page:num/"
 
 # ===============================================
-# 📂 Collections
+# ðŸ“‚ Collections
 # ===============================================
 collections:
   posts:
@@ -43,7 +43,7 @@ collections:
     permalink: /:title/
 
 # ===============================================
-# ⚙️ Plugins
+# âš™ï¸ Plugins
 # ===============================================
 plugins:
   - jekyll-feed
@@ -55,7 +55,7 @@ plugins:
   - jekyll-minifier
 
 # ===============================================
-# 🗂️ Jekyll Archives Configuration
+# ðŸ—‚ï¸ Jekyll Archives Configuration
 # ===============================================
 jekyll-archives:
   enabled:
@@ -67,7 +67,7 @@ jekyll-archives:
     tag: /tags/:name/
 
 # ===============================================
-# 📁 Include & Exclude Settings
+# ðŸ“ Include & Exclude Settings
 # ===============================================
 include:
   - _pages
@@ -81,17 +81,17 @@ exclude:
   - vendor
 
 # ===============================================
-# 🌍 Timezone
+# ðŸŒ Timezone
 # ===============================================
 timezone: Asia/Kolkata
 
 # ===============================================
-# 📊 Google Analytics (Optional)
+# ðŸ“Š Google Analytics (Optional)
 # ===============================================
 google_analytics: ""
 
 # ===============================================
-# 🚀 Performance & Caching (GitHub Pages)
+# ðŸš€ Performance & Caching (GitHub Pages)
 # ===============================================
 # Note: GitHub Pages automatically handles caching
 # These settings optimize for GitHub Pages CDN
@@ -108,4 +108,5 @@ compress_html:
   profile: false
   ignore:
     envs: []
+
 

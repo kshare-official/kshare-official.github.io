@@ -1,23 +1,23 @@
-{
-  "name": "gdflixs",
+﻿{
+  "name": "kshare",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css -m && node -e \"const fs=require('fs');let css=fs.readFileSync('./assets/css/style.css','utf8');css=css.replace(/\\/\\*[\\s\\S]*?\\*\\//g,'').trim();fs.writeFileSync('./assets/css/style.css',css.trim());console.log('✓ Fully minified CSS (no comments, no empty lines)');\"",
+    "build:css": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css -m && node -e \"const fs=require('fs');let css=fs.readFileSync('./assets/css/style.css','utf8');css=css.replace(/\\/\\*[\\s\\S]*?\\*\\//g,'').trim();fs.writeFileSync('./assets/css/style.css',css.trim());console.log('âœ“ Fully minified CSS (no comments, no empty lines)');\"",
     "build": "npm run build:css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gdflixs/gdflixs.github.io.git"
+    "url": "git+https://github.com/kshare-official/kshare-official.github.io.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gdflixs/gdflixs.github.io/issues"
+    "url": "https://github.com/kshare-official/kshare-official.github.io/issues"
   },
-  "homepage": "https://github.com/gdflixs/gdflixs.github.io#readme",
+  "homepage": "https://github.com/kshare-official/kshare-official.github.io#readme",
   "description": "",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.17",
