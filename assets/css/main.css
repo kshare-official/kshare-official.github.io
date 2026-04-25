@@ -121,13 +121,13 @@ main {
 }
 
 /* ✅ Title bar */
-.highlight::before {
+.prose pre.highlight::before {
     content: "Prompt";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 36px;
+    height: 46px;
 
     display: flex;
     align-items: center;
