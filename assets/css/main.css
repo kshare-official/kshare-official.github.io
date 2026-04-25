@@ -125,27 +125,11 @@ main {
     position: relative;
     background: #0f172a;
     color: #e2e8f0;
-    padding: 16px;
-    padding-top: 40px;
-    /* space for button */
-    padding-right: 60px;
-    /* space for button */
-
+    padding: 48px 0 0;
     border-radius: 10px;
-
-    /* ✅ Required */
-    max-height: 150px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    /* ❌ remove horizontal scroll */
-
     font-size: 14px;
     line-height: 1.6;
     border: 1px solid #1e293b;
-
-    /* ✅ wrap long content */
-    white-space: pre-wrap;
-    word-break: break-word;
 }
 
 /* Code text */
@@ -153,16 +137,19 @@ main {
     font-family: 'Fira Code', monospace;
     background: transparent;
     color: inherit;
-
-    /* inherit wrapping */
-    white-space: inherit;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 150px;
+    padding: 0 16px 16px;
+    overflow: hidden auto;
+    display: block;
 }
 
 /* ✅ Copy button (fixed to parent, not scrolling) */
 .highlight .copy-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     z-index: 20;
 
     background: #1e293b;
@@ -193,11 +180,11 @@ main {
 }
 
 /* Scrollbar (optional) */
-.prose pre::-webkit-scrollbar {
+.prose pre code::-webkit-scrollbar {
     width: 6px;
 }
 
-.prose pre::-webkit-scrollbar-thumb {
+.prose pre code::-webkit-scrollbar-thumb {
     background: #334155;
     border-radius: 10px;
 }
