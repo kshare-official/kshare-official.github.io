@@ -26,6 +26,7 @@ last_modified_at: 2026-04-25 15:30:00 +0530
 - [What is the Watercolor Sari Portrait Prompt?](#what-is-the-watercolor-sari-portrait-prompt)
 - [The Science of Layered Pigment Simulation](#the-science-of-layered-pigment-simulation)
 - [Key Features](#key-features)
+- [Copy & Paste Prompt](#copy-paste-prompt)
 - [Full Prompt Access](#full-prompt-access)
 - [Best Use Cases](#best-use-cases)
 - [Pro Tips for Texture & Depth](#pro-tips)
