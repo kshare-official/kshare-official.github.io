@@ -4,7 +4,7 @@
     <div class="bg-white rounded-lg p-6 mb-6 shadow-sm border border-gray-100" style="min-height: 280px;">
         <div class="flex items-center gap-2 mb-4">
             <i data-lucide="history" class="text-blue-600" style="width: 24px; height: 24px;"></i>
-            <h3 class="text-xl font-bold text-gray-900">Recent Posts</h3>
+            <h3 class="font-bold text-gray-900">Recent Posts</h3>
         </div>
         <ul class="space-y-3">
             {% for post in site.posts limit: 5 %}
@@ -28,7 +28,7 @@
     <div class="bg-white rounded-lg p-6 mb-6 shadow-sm border border-gray-100" style="min-height: 200px;">
         <div class="flex items-center gap-2 mb-4">
             <i data-lucide="folder-open" class="text-blue-600" style="width: 24px; height: 24px;"></i>
-            <h3 class="text-xl font-bold text-gray-900">Categories</h3>
+            <h3 class="font-bold text-gray-900">Categories</h3>
         </div>
         <ul class="space-y-2">
             {% assign categories = site.posts | map: 'categories' | join: ',' | split: ',' | uniq | sort %}

@@ -4,7 +4,7 @@
   role="{{ include.role | default: 'banner' }}" {% if include.aria_label %}aria-label="{{ include.aria_label }}" {%
   endif %} {% if include.itemtype %}itemscope itemtype="{{ include.itemtype }}" {% endif %}>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <h1 class="text-5xl md:text-6xl font-bold mb-2" {% if include.itemprop_headline
+    <h1 class="font-bold mb-2" {% if include.itemprop_headline
       %}itemprop="{{ include.itemprop_headline }}" {% endif %}>{{ include.title }}</h1>
     {% if include.subtitle %}
     <p class="text-gray-300">{{ include.subtitle }}</p>
@@ -114,7 +114,7 @@
   role="{{ include.role | default: 'banner' }}" {% if include.aria_label %}aria-label="{{ include.aria_label }}" {%
   endif %} {% if include.itemtype %}itemscope itemtype="{{ include.itemtype }}" {% endif %}>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <h1 class="text-5xl md:text-6xl font-bold mb-2" {% if include.itemprop_headline
+    <h1 class="font-bold mb-2" {% if include.itemprop_headline
       %}itemprop="{{ include.itemprop_headline }}" {% endif %}>{{ include.title }}</h1>
     {% if include.subtitle %}
     <p class="text-blue-100 opacity-95">{{ include.subtitle }}</p>
