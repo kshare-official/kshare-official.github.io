@@ -114,21 +114,79 @@ main {
     font-size: 0.9em;
 }
 
+/* Code block */
 .prose pre {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    padding: 1.5em;
-    border-radius: 8px;
+    position: relative;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 16px;
+    padding-right: 60px;
+    /* space for button */
+    border-radius: 10px;
+
+    /* ✅ Required */
+    max-height: 150px;
+    overflow-y: auto;
     overflow-x: auto;
-    margin-bottom: 1.5em;
-    line-height: 1.5;
+
+    font-size: 14px;
+    line-height: 1.6;
+    border: 1px solid #1e293b;
 }
 
+/* Code text */
 .prose pre code {
-    background-color: transparent;
+    font-family: 'Fira Code', monospace;
+    background: transparent;
     color: inherit;
-    padding: 0;
-    border-radius: 0;
+}
+
+/* Wrapper */
+.highlight {
+    margin: 20px 0;
+}
+
+/* Copy button */
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #1e293b;
+    color: #cbd5f5;
+    border: none;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.copy-button:hover {
+    background: #334155;
+    color: #ffffff;
+}
+
+/* Active */
+.copy-button:active {
+    transform: scale(0.95);
+}
+
+/* Copied state */
+.copy-button.copied {
+    background: #16a34a;
+    color: #fff;
+}
+
+/* Scrollbar (optional) */
+.prose pre::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
 }
 
 .prose blockquote {
@@ -372,25 +430,25 @@ button:hover [data-lucide] {
     transform: rotate(180deg);
 }
 
-#table-of-contents + ol,
-#table-of-contents + ul {
+#table-of-contents+ol,
+#table-of-contents+ul {
     display: none;
 }
 
-#table-of-contents.expanded + ol,
-#table-of-contents.expanded + ul {
+#table-of-contents.expanded+ol,
+#table-of-contents.expanded+ul {
     display: block;
 }
 
-#table-of-contents + ol li a,
-#table-of-contents + ul li a {
+#table-of-contents+ol li a,
+#table-of-contents+ul li a {
     color: #1d4ed8;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-#table-of-contents + ol li a:hover,
-#table-of-contents + ul li a:hover {
+#table-of-contents+ol li a:hover,
+#table-of-contents+ul li a:hover {
     color: #1e40af;
     text-decoration: underline;
 }
