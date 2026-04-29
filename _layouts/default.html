@@ -52,6 +52,16 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
+    <!-- Preload LCP Image -->
+    {% if page.layout == 'post' and page.image %}
+    {% if page.image contains '/large/' %}
+    {% assign preload_small = page.image | replace: '/large/', '/small/' %}
+    <link rel="preload" as="image" href="{{ page.image }}" imagesrcset="{{ preload_small }} 600w, {{ page.image }} 1200w" imagesizes="(max-width: 600px) 100vw, 1200px" fetchpriority="high">
+    {% else %}
+    <link rel="preload" as="image" href="{{ page.image }}" fetchpriority="high">
+    {% endif %}
+    {% endif %}
+
     <!-- Critical CSS Inlined to eliminate render blocking -->
     <style>
         {% include critical.html %}
@@ -183,8 +193,8 @@
 
     {% include footer.html %}
 
-    <!-- Lucide Icons - Defer loading to prevent render blocking -->
-    <script defer src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.min.js"></script>
+    <!-- Lucide Icons - Self-hosted and deferred to prevent 3rd party render blocking -->
+    <script defer src="{{ '/assets/js/lucide.min.js' | relative_url }}"></script>
 
     <!-- Google Analytics - Purely lazy loaded on user interaction -->
     {% if site.google_analytics and site.google_analytics != "" %}
