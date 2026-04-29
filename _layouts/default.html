@@ -216,7 +216,10 @@
     </script>
     {% endif %}
 
-    <script defer src="{{ '/assets/js/script.js?v=1.0.1' | relative_url }}"></script>
+    <!-- Core Script Inlined to eliminate additional network requests and caching issues -->
+    <script>
+        {% include script.js %}
+    </script>
 
     <!-- Initialize Lucide Icons - Deferred to prevent forced reflows -->
     <script defer>
