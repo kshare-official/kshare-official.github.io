@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="google-site-verification" content="_-EWcvm-zBNUregEcld10tltaxalq6b63LxomytFiss" />
     <!-- SEO Meta Tags -->
-    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} - {{ site.description }}{%
+    <title>{% if page.title %}{{ page.title }}{% if paginator.page > 1 %} - Page {{ paginator.page }}{% endif %} | {{ site.title }}{% else %}{{ site.title }} - {{ site.description }}{%
         endif %}</title>
     <meta name="description"
-        content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 25 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 25 }}{% else %}{{ site.description }}{% endif %}">
+        content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 25 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 25 }}{% else %}{{ site.description }}{% endif %}{% if paginator.page > 1 %} - Page {{ paginator.page }}{% endif %}">
     <meta name="keywords"
         content="{% if page.tags %}{{ page.tags | join: ', ' }}, {% endif %}{% if page.categories %}{{ page.categories | join: ', ' }}, {% endif %}{{ site.keywords }}">
     <meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}">
@@ -21,9 +21,9 @@
 
     <!-- Open Graph Tags (Social Media) -->
     <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% if paginator.page > 1 %} - Page {{ paginator.page }}{% endif %}{% else %}{{ site.title }}{% endif %}">
     <meta property="og:description"
-        content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}">
+        content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}{% if paginator.page > 1 %} - Page {{ paginator.page }}{% endif %}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:image"
         content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ '/assets/images/og-image.png' | absolute_url }}{% endif %}">
@@ -31,9 +31,9 @@
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% if paginator.page > 1 %} - Page {{ paginator.page }}{% endif %}{% else %}{{ site.title }}{% endif %}">
     <meta name="twitter:description"
-        content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}">
+        content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% elsif page.description %}{{ page.description | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}{% if paginator.page > 1 %} - Page {{ paginator.page }}{% endif %}">
     <meta name="twitter:image"
         content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ '/assets/images/og-image.png' | absolute_url }}{% endif %}">
     {% if site.twitter_username %}
