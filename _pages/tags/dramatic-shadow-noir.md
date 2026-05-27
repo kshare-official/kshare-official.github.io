@@ -1,0 +1,7 @@
+---
+layout: tag
+title: "dramatic shadow noir"
+description: "Posts tagged with dramatic shadow noir"
+permalink: /tags/dramatic-shadow-noir/
+tag_name: "dramatic shadow noir"
+---
