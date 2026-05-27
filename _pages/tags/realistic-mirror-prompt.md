@@ -4,4 +4,6 @@ title: "realistic mirror prompt"
 description: "Posts tagged with realistic mirror prompt"
 permalink: /tags/realistic-mirror-prompt/
 tag_name: "realistic mirror prompt"
+page_number: 1
+total_pages: 1
 ---

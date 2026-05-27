@@ -4,4 +4,6 @@ title: "custom pencil sketch"
 description: "Posts tagged with custom pencil sketch"
 permalink: /tags/custom-pencil-sketch/
 tag_name: "custom pencil sketch"
+page_number: 1
+total_pages: 1
 ---

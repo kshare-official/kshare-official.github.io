@@ -4,4 +4,6 @@ title: "holi festival portrait"
 description: "Posts tagged with holi festival portrait"
 permalink: /tags/holi-festival-portrait/
 tag_name: "holi festival portrait"
+page_number: 1
+total_pages: 1
 ---

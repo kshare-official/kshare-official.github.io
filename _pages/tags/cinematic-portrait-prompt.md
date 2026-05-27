@@ -4,4 +4,6 @@ title: "cinematic portrait prompt"
 description: "Posts tagged with cinematic portrait prompt"
 permalink: /tags/cinematic-portrait-prompt/
 tag_name: "cinematic portrait prompt"
+page_number: 1
+total_pages: 1
 ---

@@ -4,4 +4,6 @@ title: "aesthetic portrait prompt"
 description: "Posts tagged with aesthetic portrait prompt"
 permalink: /tags/aesthetic-portrait-prompt/
 tag_name: "aesthetic portrait prompt"
+page_number: 1
+total_pages: 1
 ---

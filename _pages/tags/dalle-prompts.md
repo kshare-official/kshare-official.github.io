@@ -4,4 +4,6 @@ title: "dalle prompts"
 description: "Posts tagged with dalle prompts"
 permalink: /tags/dalle-prompts/
 tag_name: "dalle prompts"
+page_number: 1
+total_pages: 1
 ---

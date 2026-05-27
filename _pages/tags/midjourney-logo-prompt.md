@@ -4,4 +4,6 @@ title: "midjourney logo prompt"
 description: "Posts tagged with midjourney logo prompt"
 permalink: /tags/midjourney-logo-prompt/
 tag_name: "midjourney logo prompt"
+page_number: 1
+total_pages: 1
 ---

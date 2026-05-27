@@ -2,7 +2,27 @@
 layout: default
 ---
 
-{% assign current_category = page.category_name | default: page.title | downcase %}
+{% assign current_category = page.category_name | default: page.title %}
+{% assign category_posts = site.posts | sort: 'date' | reverse %}
+
+{% comment %} Calculate pagination slice {% endcomment %}
+{% assign page_size = 10 %}
+{% assign current_page = page.page_number | default: 1 %}
+{% assign offset = current_page | minus: 1 | times: page_size %}
+
+{% comment %} Filter posts by category (case-insensitive) {% endcomment %}
+{% assign target_category = current_category | downcase %}
+{% assign filtered_posts = "" | split: "" %}
+{% for post in category_posts %}
+  {% assign post_categories_downcased = post.categories | join: "," | downcase | split: "," %}
+  {% if post_categories_downcased contains target_category %}
+    {% assign filtered_posts = filtered_posts | push: post %}
+  {% endif %}
+{% endfor %}
+
+{% assign total_posts = filtered_posts.size %}
+{% assign total_pages = total_posts | plus: page_size | minus: 1 | divided_by: page_size %}
+{% assign paginated_posts = filtered_posts | slice: offset, page_size %}
 
 <!-- Breadcrumb Schema -->
 {% include breadcrumb.html page_url=page.url page_title=page.title %}
@@ -18,7 +38,9 @@ layout: default
         <div class="flex gap-8 flex-wrap md:flex-row flex-col">
             <div class="flex-1 min-w-0">
                 <!-- Posts List -->
-                {% include post-list.html filter_by_category=current_category %}
+                {% include post-list.html posts=paginated_posts %}
+
+                {% include pagination.html %}
 
                 <!-- Back Link -->
                 <div class="mt-12 pt-8 border-t border-gray-200">

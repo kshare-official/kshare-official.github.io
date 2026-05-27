@@ -4,4 +4,6 @@ title: "girls in lehenga"
 description: "Posts tagged with girls in lehenga"
 permalink: /tags/girls-in-lehenga/
 tag_name: "girls in lehenga"
+page_number: 1
+total_pages: 1
 ---

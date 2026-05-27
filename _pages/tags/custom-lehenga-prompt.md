@@ -4,4 +4,6 @@ title: "custom lehenga prompt"
 description: "Posts tagged with custom lehenga prompt"
 permalink: /tags/custom-lehenga-prompt/
 tag_name: "custom lehenga prompt"
+page_number: 1
+total_pages: 1
 ---

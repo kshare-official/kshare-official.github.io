@@ -4,4 +4,6 @@ title: "neon noir photography"
 description: "Posts tagged with neon noir photography"
 permalink: /tags/neon-noir-photography/
 tag_name: "neon noir photography"
+page_number: 1
+total_pages: 1
 ---

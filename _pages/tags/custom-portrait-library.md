@@ -4,4 +4,6 @@ title: "custom portrait library"
 description: "Posts tagged with custom portrait library"
 permalink: /tags/custom-portrait-library/
 tag_name: "custom portrait library"
+page_number: 1
+total_pages: 1
 ---

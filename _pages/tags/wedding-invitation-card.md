@@ -4,4 +4,6 @@ title: "wedding invitation card"
 description: "Posts tagged with wedding invitation card"
 permalink: /tags/wedding-invitation-card/
 tag_name: "wedding invitation card"
+page_number: 1
+total_pages: 1
 ---

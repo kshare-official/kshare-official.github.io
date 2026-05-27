@@ -4,4 +4,6 @@ title: "indian saree girl"
 description: "Posts tagged with indian saree girl"
 permalink: /tags/indian-saree-girl/
 tag_name: "indian saree girl"
+page_number: 1
+total_pages: 1
 ---

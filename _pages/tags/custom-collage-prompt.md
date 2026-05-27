@@ -4,4 +4,6 @@ title: "custom collage prompt"
 description: "Posts tagged with custom collage prompt"
 permalink: /tags/custom-collage-prompt/
 tag_name: "custom collage prompt"
+page_number: 1
+total_pages: 1
 ---

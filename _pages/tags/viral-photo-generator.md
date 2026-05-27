@@ -4,4 +4,6 @@ title: "viral photo generator"
 description: "Posts tagged with viral photo generator"
 permalink: /tags/viral-photo-generator/
 tag_name: "viral photo generator"
+page_number: 1
+total_pages: 1
 ---

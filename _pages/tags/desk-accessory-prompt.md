@@ -4,4 +4,6 @@ title: "desk accessory prompt"
 description: "Posts tagged with desk accessory prompt"
 permalink: /tags/desk-accessory-prompt/
 tag_name: "desk accessory prompt"
+page_number: 1
+total_pages: 1
 ---

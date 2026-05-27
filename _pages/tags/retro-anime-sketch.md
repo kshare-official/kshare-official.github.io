@@ -4,4 +4,6 @@ title: "retro anime sketch"
 description: "Posts tagged with retro anime sketch"
 permalink: /tags/retro-anime-sketch/
 tag_name: "retro anime sketch"
+page_number: 1
+total_pages: 1
 ---

@@ -4,4 +4,6 @@ title: "notebook sketch prompt"
 description: "Posts tagged with notebook sketch prompt"
 permalink: /tags/notebook-sketch-prompt/
 tag_name: "notebook sketch prompt"
+page_number: 1
+total_pages: 1
 ---

@@ -5,16 +5,19 @@ const postsDir = path.join(__dirname, '../_posts');
 const categoriesDir = path.join(__dirname, '../_pages/categories');
 const tagsDir = path.join(__dirname, '../_pages/tags');
 
-// Ensure directories exist
-if (!fs.existsSync(categoriesDir)) {
-  fs.mkdirSync(categoriesDir, { recursive: true });
+// Ensure directories exist and are clean
+if (fs.existsSync(categoriesDir)) {
+  fs.rmSync(categoriesDir, { recursive: true, force: true });
 }
-if (!fs.existsSync(tagsDir)) {
-  fs.mkdirSync(tagsDir, { recursive: true });
-}
+fs.mkdirSync(categoriesDir, { recursive: true });
 
-const categories = new Set();
-const tags = new Set();
+if (fs.existsSync(tagsDir)) {
+  fs.rmSync(tagsDir, { recursive: true, force: true });
+}
+fs.mkdirSync(tagsDir, { recursive: true });
+
+const postsByCategory = {};
+const postsByTag = {};
 
 // Helper to slugify
 function slugify(text) {
@@ -43,6 +46,9 @@ files.forEach(file => {
   
   let inCategories = false;
   let inTags = false;
+  
+  const categories = new Set();
+  const tags = new Set();
   
   lines.forEach(line => {
     const trimmed = line.trim();
@@ -78,7 +84,6 @@ files.forEach(file => {
       return;
     }
     
-    // Check if other front matter key starts
     if (trimmed.includes(':') && !trimmed.startsWith('-')) {
       inCategories = false;
       inTags = false;
@@ -92,46 +97,78 @@ files.forEach(file => {
       tags.add(trimmed.substring(1).trim().replace(/['"]/g, ''));
     }
   });
+  
+  categories.forEach(c => {
+    if (!c) return;
+    if (!postsByCategory[c]) postsByCategory[c] = [];
+    postsByCategory[c].push(file);
+  });
+  
+  tags.forEach(t => {
+    if (!t) return;
+    if (!postsByTag[t]) postsByTag[t] = [];
+    postsByTag[t].push(file);
+  });
 });
 
-console.log(`Found ${categories.size} categories and ${tags.size} tags.`);
+const pageSize = 10;
+let generatedCategoriesCount = 0;
+let generatedTagsCount = 0;
 
 // Generate category md files
-categories.forEach(category => {
+Object.keys(postsByCategory).forEach(category => {
   if (!category) return;
   const slug = slugify(category);
-  const filePath = path.join(categoriesDir, `${slug}.md`);
-  if (!fs.existsSync(filePath)) {
+  const posts = postsByCategory[category];
+  const totalPages = Math.ceil(posts.length / pageSize);
+
+  for (let p = 1; p <= totalPages; p++) {
+    const filename = p === 1 ? `${slug}.md` : `${slug}-page-${p}.md`;
+    const filePath = path.join(categoriesDir, filename);
+    const permalink = p === 1 ? `/categories/${slug}/` : `/categories/${slug}/page/${p}/`;
+    
     const content = `---
 layout: category
-title: "${category}"
-description: "Latest posts in ${category} category"
-permalink: /categories/${slug}/
+title: "${category}${p > 1 ? ` - Page ${p}` : ''}"
+description: "Latest posts in ${category} category${p > 1 ? `, page ${p}` : ''}"
+permalink: ${permalink}
 category_name: "${category}"
+page_number: ${p}
+total_pages: ${totalPages}
 ---
 `;
     fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`+ Generated category archive: _pages/categories/${slug}.md`);
+    generatedCategoriesCount++;
   }
 });
 
 // Generate tag md files
-tags.forEach(tag => {
+Object.keys(postsByTag).forEach(tag => {
   if (!tag) return;
   const slug = slugify(tag);
-  const filePath = path.join(tagsDir, `${slug}.md`);
-  if (!fs.existsSync(filePath)) {
+  const posts = postsByTag[tag];
+  const totalPages = Math.ceil(posts.length / pageSize);
+
+  for (let p = 1; p <= totalPages; p++) {
+    const filename = p === 1 ? `${slug}.md` : `${slug}-page-${p}.md`;
+    const filePath = path.join(tagsDir, filename);
+    const permalink = p === 1 ? `/tags/${slug}/` : `/tags/${slug}/page/${p}/`;
+    
     const content = `---
 layout: tag
-title: "${tag}"
-description: "Posts tagged with ${tag}"
-permalink: /tags/${slug}/
+title: "${tag}${p > 1 ? ` - Page ${p}` : ''}"
+description: "Posts tagged with ${tag}${p > 1 ? `, page ${p}` : ''}"
+permalink: ${permalink}
 tag_name: "${tag}"
+page_number: ${p}
+total_pages: ${totalPages}
 ---
 `;
     fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`+ Generated tag archive: _pages/tags/${slug}.md`);
+    generatedTagsCount++;
   }
 });
 
+console.log(`Found ${Object.keys(postsByCategory).length} categories (generated ${generatedCategoriesCount} pages).`);
+console.log(`Found ${Object.keys(postsByTag).length} tags (generated ${generatedTagsCount} pages).`);
 console.log('✓ Archives generation complete.');
