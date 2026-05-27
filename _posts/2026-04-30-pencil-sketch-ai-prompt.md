@@ -39,7 +39,7 @@ last_modified_at: 2026-04-30 19:20:00 +0530
 ---
 
 ## Introduction
-Creating a realistic **pencil sketch of a girl playing violin** used to take hours of manual labor and years of practice. In 2026, AI has bridged that gap. With our specialized Pencil Sketch AI Prompt from the [KShare AI Prompts Library](https://kshare.in/), you can generate professional-grade graphite drawings that capture every nuance of emotion and musicality instantly.
+Creating a realistic **pencil sketch of a girl playing violin** used to take hours of manual labor and years of practice. In 2026, AI has bridged that gap. With our specialized Pencil Sketch AI Prompt from the [KShare AI Prompts Library](https://kshare.in), you can generate professional-grade graphite drawings that capture every nuance of emotion and musicality instantly.
 
 ## What is the Pencil Sketch AI Prompt?
 This prompt is a finely-tuned instruction set designed to emulate the texture of HB, 2B, and 4B graphite pencils. It focuses on **soft-edge diffusion** and **cross-hatching techniques** to ensure the final output doesn't just look like a filter, but like a genuine hand-drawn masterpiece on textured paper.
@@ -81,6 +81,6 @@ A: Absolutely! Simply replace "young girl playing violin" with any subject of yo
 A: Yes, though it is optimized for Midjourney and Gemini. For DALL-E, ensure you emphasize "hand-drawn graphite" to avoid a plastic look.
 
 ## Conclusion
-Mastering the art of digital sketching is all about the prompt logic. By using this workflow from our [AI Art Prompts](https://kshare.in/) collection, you are leveraging the power of modern AI to create timeless, soul-stirring art. Start creating your masterpiece today!
+Mastering the art of digital sketching is all about the prompt logic. By using this workflow from our [AI Art Prompts](https://kshare.in) collection, you are leveraging the power of modern AI to create timeless, soul-stirring art. Start creating your masterpiece today!
 
 ---

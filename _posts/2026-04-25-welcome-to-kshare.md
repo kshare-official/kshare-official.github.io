@@ -40,7 +40,7 @@ last_modified_at: 2026-04-25 01:15:00 +0530
 
 ## Welcome to KShare!
 
-We're thrilled to launch **KShare**, your new favorite [Free AI Prompts Library](https://kshare.in/) designed to help you unlock the full potential of generative artificial intelligence. Whether you're an artist, designer, marketer, or AI enthusiast, KShare provides the high-quality [AI Art Prompts](https://kshare.in/) and resources you need to create stunning AI-generated content.
+We're thrilled to launch **KShare**, your new favorite [Free AI Prompts Library](https://kshare.in) designed to help you unlock the full potential of generative artificial intelligence. Whether you're an artist, designer, marketer, or AI enthusiast, KShare provides the high-quality [AI Art Prompts](https://kshare.in) and resources you need to create stunning AI-generated content.
 
 ---
 
@@ -143,7 +143,7 @@ Guides and prompts for specific platforms like ChatGPT, Claude, and Midjourney.
 
 As a thank you for visiting KShare, we're offering:
 
-- 🔓 **Full Access** to our entire [Midjourney and DALL-E Prompt Library](https://kshare.in/).
+- 🔓 **Full Access** to our entire [Midjourney and DALL-E Prompt Library](https://kshare.in).
 - 🚀 **Advanced Tips** on how to use negative prompts and aspect ratios.
 - 📬 **Early Access** to upcoming prompt collections.
 
