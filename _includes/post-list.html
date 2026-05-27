@@ -1,21 +1,21 @@
 <!-- Post List Component -->
-{% if posts %}
-{% assign filtered_posts = posts %}
+{% if include.posts %}
+{% assign filtered_posts = include.posts %}
 {% else %}
 {% assign filtered_posts = site.posts %}
 {% endif %}
 
-{% if filter_by_category %}
-{% assign filtered_posts = filtered_posts | where_exp: "post", "post.categories contains filter_by_category" %}
-{% elsif filter_by_tag %}
-{% assign filtered_posts = filtered_posts | where_exp: "post", "post.tags contains filter_by_tag" %}
+{% if include.filter_by_category %}
+{% assign filtered_posts = filtered_posts | where_exp: "post", "post.categories contains include.filter_by_category" %}
+{% elsif include.filter_by_tag %}
+{% assign filtered_posts = filtered_posts | where_exp: "post", "post.tags contains include.filter_by_tag" %}
 {% endif %}
 
 {% if filtered_posts.size > 0 %}
 <!-- Handle limit (optional) -->
 {% assign posts_to_show = filtered_posts %}
-{% if limit %}
-{% assign posts_to_show = filtered_posts | slice: 0, limit %}
+{% if include.limit %}
+{% assign posts_to_show = filtered_posts | slice: 0, include.limit %}
 {% endif %}
 
 <ul class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -91,9 +91,9 @@
 <!-- No posts message -->
 <div class="text-center py-16">
     <i data-lucide="inbox" class="text-gray-400 mx-auto mb-4" style="width: 64px; height: 64px;"></i>
-    {% if filter_by_category %}
+    {% if include.filter_by_category %}
     <p class="text-gray-600">No posts in this category yet.</p>
-    {% elsif filter_by_tag %}
+    {% elsif include.filter_by_tag %}
     <p class="text-gray-600">No posts with this tag yet.</p>
     {% else %}
     <p class="text-gray-600">No posts yet. Check back soon!</p>
