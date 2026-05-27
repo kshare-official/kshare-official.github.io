@@ -78,16 +78,14 @@ header" breadcrumb=breadcrumb_array %}
                 ]
                 </script>
 
-                <!-- Dynamic Filtering & Responsive Pagination Engine -->
+                <!-- Dynamic Filtering, Responsive Pagination & HTML5 History Clean URL Router -->
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                   const postsJson = document.getElementById('posts-json');
                   if (!postsJson) return;
                   const posts = JSON.parse(postsJson.textContent);
                   
-                  const urlParams = new URLSearchParams(window.location.search);
-                  const selectedSlug = urlParams.get('c');
-                  const page = parseInt(urlParams.get('page') || '1', 10);
+                  const pageSize = 10;
                   
                   function slugify(text) {
                     return text
@@ -104,8 +102,9 @@ header" breadcrumb=breadcrumb_array %}
                     
                     // Previous button
                     if (currentPage > 1) {
+                      const prevUrl = currentPage === 2 ? `/categories/${slug}/` : `/categories/${slug}/page/${currentPage - 1}/`;
                       html += `
-                        <a href="?c=${slug}&page=${currentPage - 1}" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
+                        <a href="${prevUrl}" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                           <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
                           <span class="hidden sm:inline">Previous</span>
                         </a>
@@ -136,7 +135,7 @@ header" breadcrumb=breadcrumb_array %}
                     }
                     
                     if (startPage > 1) {
-                      html += `<a href="?c=${slug}&page=1" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">1</a>`;
+                      html += `<a href="/categories/${slug}/" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">1</a>`;
                       if (startPage > 2) {
                         html += '<span class="inline-flex items-center justify-center w-10 h-10 text-gray-400 font-medium">...</span>';
                       }
@@ -146,7 +145,8 @@ header" breadcrumb=breadcrumb_array %}
                       if (pageNum === currentPage) {
                         html += `<span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-blue-600 text-white font-semibold">${pageNum}</span>`;
                       } else {
-                        html += `<a href="?c=${slug}&page=${pageNum}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">${pageNum}</a>`;
+                        const pageUrl = pageNum === 1 ? `/categories/${slug}/` : `/categories/${slug}/page/${pageNum}/`;
+                        html += `<a href="${pageUrl}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">${pageNum}</a>`;
                       }
                     }
                     
@@ -154,7 +154,7 @@ header" breadcrumb=breadcrumb_array %}
                       if (endPage < totalPages - 1) {
                         html += '<span class="inline-flex items-center justify-center w-10 h-10 text-gray-400 font-medium">...</span>';
                       }
-                      html += `<a href="?c=${slug}&page=${totalPages}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">${totalPages}</a>`;
+                      html += `<a href="/categories/${slug}/page/${totalPages}/" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">${totalPages}</a>`;
                     }
                     
                     html += '</div>';
@@ -162,7 +162,7 @@ header" breadcrumb=breadcrumb_array %}
                     // Next button
                     if (currentPage < totalPages) {
                       html += `
-                        <a href="?c=${slug}&page=${currentPage + 1}" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
+                        <a href="/categories/${slug}/page/${currentPage + 1}/" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                           <span class="hidden sm:inline">Next</span>
                           <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
                         </a>
@@ -180,10 +180,33 @@ header" breadcrumb=breadcrumb_array %}
                     return html;
                   }
                   
-                  if (selectedSlug) {
+                  function showGrid() {
+                    const heroTitle = document.querySelector('header h1');
+                    if (heroTitle) heroTitle.textContent = "Categories";
+                    
+                    const heroSubtitle = document.querySelector('header p');
+                    if (heroSubtitle) heroSubtitle.textContent = "Browse posts by categories";
+                    
+                    const breadcrumbs = document.querySelectorAll('header nav span');
+                    if (breadcrumbs.length > 0) {
+                      const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
+                      if (lastBreadcrumb) lastBreadcrumb.textContent = "Categories";
+                    }
+                    
+                    const introText = document.getElementById('intro-text');
+                    if (introText) introText.classList.remove('hidden');
+                    
+                    const gridContainer = document.getElementById('categories-grid-container');
+                    if (gridContainer) gridContainer.classList.remove('hidden');
+                    
+                    const filteredContainer = document.getElementById('filtered-posts-container');
+                    if (filteredContainer) filteredContainer.classList.add('hidden');
+                  }
+                  
+                  function renderCategoryView(slug, page) {
                     let categoryName = null;
                     for (const post of posts) {
-                      const match = post.categories.find(c => slugify(c) === selectedSlug);
+                      const match = post.categories.find(c => slugify(c) === slug);
                       if (match) {
                         categoryName = match;
                         break;
@@ -191,7 +214,7 @@ header" breadcrumb=breadcrumb_array %}
                     }
                     
                     if (!categoryName) {
-                      categoryName = selectedSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                      categoryName = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
                     }
                     
                     // Update Hero
@@ -217,7 +240,7 @@ header" breadcrumb=breadcrumb_array %}
                     
                     // Filter & display posts
                     const filteredPosts = posts.filter(post => 
-                      post.categories.some(c => slugify(c) === selectedSlug)
+                      post.categories.some(c => slugify(c) === slug)
                     );
                     
                     const filteredContainer = document.getElementById('filtered-posts-container');
@@ -225,7 +248,6 @@ header" breadcrumb=breadcrumb_array %}
                       filteredContainer.classList.remove('hidden');
                       
                       if (filteredPosts.length > 0) {
-                        const pageSize = 10;
                         const totalPages = Math.ceil(filteredPosts.length / pageSize);
                         const start = (page - 1) * pageSize;
                         const chunk = filteredPosts.slice(start, start + pageSize);
@@ -246,7 +268,7 @@ header" breadcrumb=breadcrumb_array %}
                             tagsHtml = '<div class="flex flex-wrap gap-2 mt-3">';
                             for (const tag of post.tags.slice(0, 3)) {
                               tagsHtml += `
-                                <a href="/tags/?t=${slugify(tag)}" class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition-colors flex items-center gap-1" itemprop="keywords">
+                                <a href="/tags/${slugify(tag)}/" class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition-colors flex items-center gap-1" itemprop="keywords">
                                   <i data-lucide="tag" style="width: 12px; height: 12px;"></i>
                                   ${tag}
                                 </a>
@@ -285,7 +307,7 @@ header" breadcrumb=breadcrumb_array %}
                         postsHtml += '</ul>';
                         
                         if (totalPages > 1) {
-                          postsHtml += renderPagination(selectedSlug, page, totalPages);
+                          postsHtml += renderPagination(slug, page, totalPages);
                         }
                         
                         postsHtml += `
@@ -312,6 +334,82 @@ header" breadcrumb=breadcrumb_array %}
                       }
                     }
                   }
+                  
+                  // Initialize the router!
+                  function initRouter() {
+                    const pathname = window.location.pathname;
+                    
+                    // First check if we have query parameters (e.g. from the 404 router redirect)
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const queryCat = urlParams.get('c');
+                    const queryPage = parseInt(urlParams.get('page') || '1', 10);
+                    
+                    if (queryCat) {
+                      // Rewrite address bar to clean URL
+                      const cleanUrl = `/categories/${queryCat}/` + (queryPage > 1 ? `page/${queryPage}/` : '');
+                      window.history.replaceState({}, '', cleanUrl);
+                      renderCategoryView(queryCat, queryPage);
+                      return;
+                    }
+                    
+                    // Otherwise parse pathname
+                    const catMatch = pathname.match(/\/categories\/([^/]+)\/?$/);
+                    const pageMatch = pathname.match(/\/categories\/([^/]+)\/page\/(\d+)\/?$/);
+                    
+                    if (pathname === '/categories' || pathname === '/categories/') {
+                      showGrid();
+                    } else if (pageMatch) {
+                      renderCategoryView(pageMatch[1], parseInt(pageMatch[2], 10));
+                    } else if (catMatch) {
+                      if (catMatch[1] !== 'index.html') {
+                        renderCategoryView(catMatch[1], 1);
+                      } else {
+                        showGrid();
+                      }
+                    }
+                  }
+                  
+                  // Setup clean URL intercepts for clicks
+                  document.addEventListener('click', function(e) {
+                    const anchor = e.target.closest('a');
+                    if (!anchor) return;
+                    
+                    let targetUrl;
+                    try {
+                      targetUrl = new URL(anchor.href);
+                    } catch (err) {
+                      return;
+                    }
+                    
+                    if (targetUrl.origin !== window.location.origin) return;
+                    
+                    const pathname = targetUrl.pathname;
+                    
+                    const catMatch = pathname.match(/\/categories\/([^/]+)\/?$/);
+                    const pageMatch = pathname.match(/\/categories\/([^/]+)\/page\/(\d+)\/?$/);
+                    
+                    if (pathname === '/categories' || pathname === '/categories/') {
+                      e.preventDefault();
+                      window.history.pushState({}, '', '/categories/');
+                      showGrid();
+                    } else if (pageMatch) {
+                      e.preventDefault();
+                      window.history.pushState({}, '', pathname);
+                      renderCategoryView(pageMatch[1], parseInt(pageMatch[2], 10));
+                    } else if (catMatch) {
+                      if (catMatch[1] !== 'index.html') {
+                        e.preventDefault();
+                        window.history.pushState({}, '', pathname);
+                        renderCategoryView(catMatch[1], 1);
+                      }
+                    }
+                  });
+                  
+                  // Setup Back/Forward buttons handler
+                  window.addEventListener('popstate', initRouter);
+                  
+                  // Run router on load
+                  initRouter();
                 });
                 </script>
             </div>
