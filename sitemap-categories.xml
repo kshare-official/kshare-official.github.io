@@ -23,7 +23,7 @@ layout: null
         {%- assign latest_post = category_posts | sort: 'date' | last -%}
         {%- assign lm = latest_post.last_modified_at | default: latest_post.date | default: site.time -%}
   <url>
-    <loc>{{ site.url }}/categories/{{ category | slugify }}/</loc>
+    <loc>{{ site.url }}/categories/?c={{ category | slugify }}</loc>
     <lastmod>{{ lm | date_to_xmlschema }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

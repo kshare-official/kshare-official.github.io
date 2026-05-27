@@ -1,36 +1,61 @@
 <!-- Pagination Component -->
 {% if paginator.total_pages > 1 %}
-<nav class="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-gray-200" aria-label="Pagination">
+{% assign first_page_url = site.paginate_path | replace: 'page:num/', '' | relative_url %}
+<nav class="flex flex-wrap items-center justify-center gap-2 mt-12 pt-8 border-t border-gray-200" aria-label="Pagination">
     <!-- Previous Button -->
     {% if paginator.previous_page %}
         {% if paginator.previous_page == 1 %}
-            <a href="{{ '/' | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
+            <a href="{{ first_page_url }}" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                 <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
-                Previous
+                <span class="hidden sm:inline">Previous</span>
             </a>
         {% else %}
-            <a href="{{ paginator.previous_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
+            <a href="{{ paginator.previous_page_path | relative_url }}" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                 <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
-                Previous
+                <span class="hidden sm:inline">Previous</span>
             </a>
         {% endif %}
     {% else %}
-        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-400 cursor-not-allowed font-medium">
+        <span class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-400 cursor-not-allowed font-medium">
             <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
-            Previous
+            <span class="hidden sm:inline">Previous</span>
         </span>
     {% endif %}
 
     <!-- Page Numbers -->
-    <div class="flex items-center gap-1">
-        {% for page_num in (1..paginator.total_pages) %}
+    <div class="flex flex-wrap items-center gap-1">
+        {% assign limit = 2 %}
+        {% assign start_page = paginator.page | minus: limit %}
+        {% assign end_page = paginator.page | plus: limit %}
+
+        {% if start_page < 1 %}
+            {% assign end_page = end_page | plus: 1 | minus: start_page %}
+            {% assign start_page = 1 %}
+        {% endif %}
+
+        {% if end_page > paginator.total_pages %}
+            {% assign start_page = start_page | minus: end_page | plus: paginator.total_pages %}
+            {% assign end_page = paginator.total_pages %}
+            {% if start_page < 1 %}
+                {% assign start_page = 1 %}
+            {% endif %}
+        {% endif %}
+
+        {% if start_page > 1 %}
+            <a href="{{ first_page_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">1</a>
+            {% if start_page > 2 %}
+                <span class="inline-flex items-center justify-center w-10 h-10 text-gray-400 font-medium">...</span>
+            {% endif %}
+        {% endif %}
+
+        {% for page_num in (start_page..end_page) %}
             {% if page_num == paginator.page %}
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-blue-600 text-white font-semibold">
                     {{ page_num }}
                 </span>
             {% else %}
                 {% if page_num == 1 %}
-                    <a href="{{ '/' | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
+                    <a href="{{ first_page_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
                         {{ page_num }}
                     </a>
                 {% else %}
@@ -40,17 +65,24 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
+
+        {% if end_page < paginator.total_pages %}
+            {% if end_page < paginator.total_pages | minus: 1 %}
+                <span class="inline-flex items-center justify-center w-10 h-10 text-gray-400 font-medium">...</span>
+            {% endif %}
+            <a href="{{ site.paginate_path | replace: ':num', paginator.total_pages | relative_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">{{ paginator.total_pages }}</a>
+        {% endif %}
     </div>
 
     <!-- Next Button -->
     {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
-            Next
+        <a href="{{ paginator.next_page_path | relative_url }}" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-600 transition-colors font-medium">
+            <span class="hidden sm:inline">Next</span>
             <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
         </a>
     {% else %}
-        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-400 cursor-not-allowed font-medium">
-            Next
+        <span class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-400 cursor-not-allowed font-medium">
+            <span class="hidden sm:inline">Next</span>
             <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
         </span>
     {% endif %}
