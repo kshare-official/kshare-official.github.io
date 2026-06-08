@@ -14,7 +14,11 @@
     <meta name="keywords"
         content="{% if page.tags %}{{ page.tags | join: ', ' }}, {% endif %}{% if page.categories %}{{ page.categories | join: ', ' }}, {% endif %}{{ site.keywords }}">
     <meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}">
+    {% if page.sitemap == false or page.noindex == true or paginator.page > 1 or page.page_number > 1 or page.type == 'tag' or page.layout == 'tag' %}
+    <meta name="robots" content="noindex, follow">
+    {% else %}
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    {% endif %}
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">

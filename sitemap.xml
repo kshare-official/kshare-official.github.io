@@ -1,0 +1,38 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>{{ site.url }}/</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- High-Value Static Pages (About, Contact, Disclaimer, Privacy, Terms, Categories) --> {% assign allowed_urls =
+  "/about.html,/contact.html,/disclaimer.html,/privacy.html,/terms.html,/categories/" | split: ","
+  %} {% for page in site.pages %} {% if allowed_urls contains page.url %} <url>
+    <loc>{{ site.url }}{{ page.url }}</loc>
+    <lastmod>{% if page.last_modified_at %}{{ page.last_modified_at | date_to_xmlschema }}{% else
+  %}{{ site.time | date_to_xmlschema }}{% endif %}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url> {% endif %} {% endfor %} <!-- Main Category Pages (No paginated
+  URLs, no tag archives) --> {% assign categories = site.posts |
+  map: 'categories' | join: ',' | split: ',' | uniq | sort %} {% for category in categories %} {% if
+  category != "" %} <url>
+    <loc>{{ site.url }}/categories/{{ category | slugify }}/</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url> {% endif %} {% endfor %} <!-- Blog Posts & Prompt Pages --> {% for post in site.posts %} {%
+  unless post.sitemap == false %} <url>
+    <loc>{{ site.url }}{{ post.url }}</loc>
+    <lastmod>{% if post.last_modified_at %}{{ post.last_modified_at | date_to_xmlschema }}{% else
+  %}{{ post.date | date_to_xmlschema }}{% endif %}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url> {% endunless %} {% endfor %} </urlset>

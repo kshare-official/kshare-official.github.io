@@ -48,7 +48,6 @@ collections:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-sitemap
   - jekyll-paginate
   - jekyll-archives
   - jekyll-reading-time
@@ -61,7 +60,9 @@ jekyll-archives:
   enabled:
     - categories
     - tags
-  layout: archive
+  layouts:
+    category: category
+    tag: tag
   permalinks:
     category: /categories/:name/
     tag: /tags/:name/
