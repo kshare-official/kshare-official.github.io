@@ -4,38 +4,91 @@ sitemap: false
 ---
 {%- capture sitemap_output -%}
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> {%- assign seen_urls = "" | split: ""
-  -%} {%- assign home_url = site.url | append: "/" | replace: "//", "/" | replace: ":/", "://" -%} <url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+{%- assign seen_urls = "" | split: "" -%}
+{%- assign home_url = site.url | append: "/" | replace: "//", "/" | replace: ":/", "://" -%}
+{%- assign now_unix = site.time | date: "%s" | plus: 0 -%}
+
+  <url>
     <loc>{{ home_url }}</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-  </url> {%- assign seen_urls = seen_urls
-  | push: home_url -%} {%- assign allowed_statics =
-  "/about/|/about.html|/contact/|/contact.html|/disclaimer/|/disclaimer.html|/privacy/|/privacy.html|/terms/|/terms.html|/categories/|/categories.html"
-  | split: "|" -%} {%- for page in site.pages -%} {%- if page.url contains '/page/' or page.url
-  contains '/tags/' -%} {%- continue -%} {%- endif -%} {%- assign is_valid = false -%} {%- if
-  allowed_statics contains page.url -%} {%- assign is_valid = true -%} {%- elsif page.url contains
-  '/categories/' -%} {%- assign is_valid = true -%} {%- endif -%} {%- if is_valid -%} {%- assign
-  clean_url = page.url | replace: 'index.html', '' | replace: '.html', '/' -%} {%- assign final_loc
-  = site.url | append: clean_url | replace: '//', '/' | replace: ':/', '://' -%} {%- unless
-  final_loc contains "." -%} {%- assign last_char = final_loc | slice: -1 -%} {%- if last_char !=
-  "/" -%} {%- assign final_loc = final_loc | append: "/" -%} {%- endif -%} {%- endunless -%} {%-
-  unless final_loc contains '.xml' or final_loc contains '.css' or final_loc contains '.js' -%} {%-
-  unless final_loc == home_url -%} {%- unless seen_urls contains final_loc -%} {%- assign lastmod =
-  page.last_modified_at | default: page.date | default: site.time -%} <url>
-    <loc>{{ final_loc }}</loc>
-    <lastmod>{{ lastmod | date_to_xmlschema }}</lastmod>
-  </url> {%- assign seen_urls = seen_urls |
-  push: final_loc -%} {%- endunless -%} {%- endunless -%} {%- endunless -%} {%- endif -%} {%- endfor
-  -%} {%- for post in site.posts -%} {%- if post.sitemap != false -%} {%- assign clean_url =
-  post.url | replace: 'index.html', '' | replace: '.html', '/' -%} {%- assign final_loc = site.url |
-  append: clean_url | replace: '//', '/' | replace: ':/', '://' -%} {%- unless final_loc contains
-  "." -%} {%- assign last_char = final_loc | slice: -1 -%} {%- if last_char != "/" -%} {%- assign
-  final_loc = final_loc | append: "/" -%} {%- endif -%} {%- endunless -%} {%- unless seen_urls
-  contains final_loc -%} {%- assign lastmod = post.last_modified_at | default: post.date | default:
-  site.time -%} <url>
-    <loc>{{ final_loc }}</loc>
-    <lastmod>{{ lastmod | date_to_xmlschema }}</lastmod>
-  </url> {%- assign seen_urls = seen_urls |
-  push: final_loc -%} {%- endunless -%} {%- endif -%} {%- endfor -%} </urlset>
+  </url>
+{%- assign seen_urls = seen_urls | push: home_url -%}
+
+{%- assign allowed_statics = "/about/|/about.html|/contact/|/contact.html|/disclaimer/|/disclaimer.html|/privacy/|/privacy.html|/terms/|/terms.html|/categories/|/categories.html" | split: "|" -%}
+
+{%- for page in site.pages -%}
+  {%- if page.url contains '/page/' or page.url contains '/tags/' -%}
+    {%- continue -%}
+  {%- endif -%}
+
+  {%- assign is_valid = false -%}
+  {%- if allowed_statics contains page.url -%}
+    {%- assign is_valid = true -%}
+  {%- elsif page.url contains '/categories/' -%}
+    {%- assign is_valid = true -%}
+  {%- endif -%}
+
+  {%- if is_valid -%}
+    {%- assign clean_url = page.url | replace: 'index.html', '' | replace: '.html', '/' -%}
+    {%- assign final_loc = site.url | append: clean_url | replace: '//', '/' | replace: ':/', '://' -%}
+    
+    {%- unless final_loc contains "." -%}
+      {%- assign last_char = final_loc | slice: -1 -%}
+      {%- if last_char != "/" -%}
+        {%- assign final_loc = final_loc | append: "/" -%}
+      {%- endif -%}
+    {%- endunless -%}
+
+    {%- unless final_loc contains '.xml' or final_loc contains '.css' or final_loc contains '.js' -%}
+      {%- unless final_loc == home_url -%}
+        {%- unless seen_urls contains final_loc -%}
+          <url>
+            <loc>{{ final_loc }}</loc>
+            {%- assign lastmod = page.last_modified_at | default: page.date -%}
+            {%- if lastmod -%}
+              {%- assign lastmod_unix = lastmod | date: "%s" | plus: 0 -%}
+              {%- if lastmod_unix <= now_unix -%}
+            <lastmod>{{ lastmod | date_to_xmlschema }}</lastmod>
+              {%- endif -%}
+            {%- endif -%}
+          </url>
+          {%- assign seen_urls = seen_urls | push: final_loc -%}
+        {%- endunless -%}
+      {%- endunless -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- for post in site.posts -%}
+  {%- if post.sitemap != false -%}
+    {%- assign clean_url = post.url | replace: 'index.html', '' | replace: '.html', '/' -%}
+    {%- assign final_loc = site.url | append: clean_url | replace: '//', '/' | replace: ':/', '://' -%}
+    
+    {%- unless final_loc contains "." -%}
+      {%- assign last_char = final_loc | slice: -1 -%}
+      {%- if last_char != "/" -%}
+        {%- assign final_loc = final_loc | append: "/" -%}
+      {%- endif -%}
+    {%- endunless -%}
+
+    {%- unless seen_urls contains final_loc -%}
+      <url>
+        <loc>{{ final_loc }}</loc>
+        {%- assign lastmod = post.last_modified_at | default: post.date -%}
+        {%- if lastmod -%}
+          {%- assign lastmod_unix = lastmod | date: "%s" | plus: 0 -%}
+          {%- if lastmod_unix <= now_unix -%}
+            <lastmod>{{ lastmod | date_to_xmlschema }}</lastmod>
+          {%- endif -%}
+        {%- endif -%}
+      </url>
+      {%- assign seen_urls = seen_urls | push: final_loc -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+
+</urlset>
 {%- endcapture -%}
 {{ sitemap_output | strip }}
