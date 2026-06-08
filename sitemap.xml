@@ -1,38 +1,34 @@
 ---
 layout: null
+sitemap: false
 ---
+{%- capture sitemap_output -%}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
   <url>
     <loc>{{ site.url }}/</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-  </url>
-
-  <!-- High-Value Static Pages (About, Contact, Disclaimer, Privacy, Terms, Categories) --> {% assign allowed_urls =
-  "/about.html,/contact.html,/disclaimer.html,/privacy.html,/terms.html,/categories/" | split: ","
-  %} {% for page in site.pages %} {% if allowed_urls contains page.url %} <url>
-    <loc>{{ site.url }}{{ page.url }}</loc>
-    <lastmod>{% if page.last_modified_at %}{{ page.last_modified_at | date_to_xmlschema }}{% else
-  %}{{ site.time | date_to_xmlschema }}{% endif %}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url> {% endif %} {% endfor %} <!-- Main Category Pages (No paginated
-  URLs, no tag archives) --> {% assign categories = site.posts |
-  map: 'categories' | join: ',' | split: ',' | uniq | sort %} {% for category in categories %} {% if
-  category != "" %} <url>
-    <loc>{{ site.url }}/categories/{{ category | slugify }}/</loc>
-    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+  </url> {%- assign allowed_statics =
+  "/about/|/about.html|/contact/|/contact.html|/disclaimer/|/disclaimer.html|/privacy/|/privacy.html|/terms/|/terms.html|/categories/|/categories.html"
+  | split: "|" -%} {%- for page in site.pages -%} {%- if page.url == '/' -%}{%- continue -%}{%-
+  endif -%} {%- if page.url contains '/page/' or page.url contains '/tags/' -%}{%- continue -%}{%-
+  endif -%} {%- assign is_valid = false -%} {%- if allowed_statics contains page.url -%} {%- assign
+  is_valid = true -%} {%- elsif page.url contains '/categories/' -%} {%- assign is_valid = true -%}
+  {%- endif -%} {%- if is_valid -%} {%- assign lastmod = page.last_modified_at | default: page.date
+  | default: site.time -%} <url>
+    <loc>{{ site.url }}{{ page.url | replace: '.html', '/' }}</loc>
+    <lastmod>{{ lastmod | date_to_xmlschema }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url> {% endif %} {% endfor %} <!-- Blog Posts & Prompt Pages --> {% for post in site.posts %} {%
-  unless post.sitemap == false %} <url>
+  </url> {%- endif -%} {%- endfor -%} {%- for post in site.posts -%} {%-
+  if post.sitemap != false -%} {%- assign lastmod = post.last_modified_at | default: post.date |
+  default: site.time -%} <url>
     <loc>{{ site.url }}{{ post.url }}</loc>
-    <lastmod>{% if post.last_modified_at %}{{ post.last_modified_at | date_to_xmlschema }}{% else
-  %}{{ post.date | date_to_xmlschema }}{% endif %}</lastmod>
+    <lastmod>{{ lastmod | date_to_xmlschema }}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url> {% endunless %} {% endfor %} </urlset>
+  </url> {%- endif -%} {%- endfor -%} </urlset>
+{%- endcapture -%}
+{{ sitemap_output | strip }}
