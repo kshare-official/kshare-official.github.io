@@ -92,7 +92,7 @@ At KShare, we believe that the future of creativity is collaborative. Our vision
 Visit our [Categories](/categories/) page to find prompts for specific AI tools or styles.
 
 ### 2. **Master the Basics**
-Check out our latest [Guides](/blog/) to improve your prompt engineering skills.
+Check out our latest [Guides](/prompts/) to improve your prompt engineering skills.
 
 ### 3. **Search by Tags**
 Use our [Tags](/tags/) page to find specific themes like "cinematic," "retro," or "minimalist."

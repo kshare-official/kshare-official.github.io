@@ -1,7 +1,7 @@
 {% if include.page_url == "/" %}
   {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"}]' %}
-{% elsif include.page_url == "/blog/" %}
-  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Blog","item":"' | append: site.url | append: '/blog/"}]' %}
+{% elsif include.page_url == "/prompts/" %}
+  {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"Prompts","item":"' | append: site.url | append: '/prompts/"}]' %}
 {% elsif include.page_url == "/about/" %}
   {% assign breadcrumb_array = '[{"@type":"ListItem","position":1,"name":"Home","item":"' | append: site.url | append: '/"},{"@type":"ListItem","position":2,"name":"About","item":"' | append: site.url | append: '/about/"}]' %}
 {% elsif include.page_url == "/contact/" %}

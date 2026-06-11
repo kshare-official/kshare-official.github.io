@@ -5,7 +5,7 @@ module.exports = {
     './_layouts/**/*.html',
     './*.html',
     './_pages/**/*.html',
-    './blog/**/*.html',
+    './prompts/**/*.html',
     './assets/**/*.js',
   ],
   theme: {
