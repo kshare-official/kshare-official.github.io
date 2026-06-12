@@ -1,9 +1,9 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 Disallow: /_site/
 Disallow: /.git/
 Disallow: /vendor/
 
-Sitemap: https://kshare-official.github.io/sitemap.xml
+Sitemap: https://kshare-official.github.io/sitemap_index.xml
 
 
