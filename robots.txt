@@ -4,6 +4,6 @@ Disallow: /_site/
 Disallow: /.git/
 Disallow: /vendor/
 
-Sitemap: https://kshare-official.github.io/sitemap_index.xml
+Sitemap: https://kshare-official.github.io/sitemap.xml
 
 
