@@ -22,11 +22,11 @@ function formatDate(dateInput) {
   if (isNaN(date.getTime())) {
     return new Date().toISOString().replace(/\.\d+Z$/, '+00:00');
   }
-  
+
   const tzOffset = -date.getTimezoneOffset();
   const diff = tzOffset >= 0 ? '+' : '-';
   const pad = num => String(Math.floor(Math.abs(num))).padStart(2, '0');
-  
+
   return date.getFullYear() +
     '-' + pad(date.getMonth() + 1) +
     '-' + pad(date.getDate()) +
@@ -51,8 +51,7 @@ const allowedStatics = [
   { file: 'disclaimer.html', url: '/disclaimer/' },
   { file: 'privacy.html', url: '/privacy/' },
   { file: 'terms.html', url: '/terms/' },
-  { file: 'categories.html', url: '/categories/' },
-  { file: 'tags.html', url: '/tags/' }
+  { file: 'categories.html', url: '/categories/' }
 ];
 
 allowedStatics.forEach(item => {
@@ -75,10 +74,26 @@ if (fs.existsSync(categoriesDir)) {
     // We only want the main category page, not page-2, page-3 etc.
     if (file.includes('-page-')) return;
     const slug = file.replace('.md', '');
-    const stats = fs.statSync(path.join(categoriesDir, file));
+    const filePath = path.join(categoriesDir, file);
+    const stats = fs.statSync(filePath);
+    let lastMod = stats.mtime;
+
+    const content = fs.readFileSync(filePath, 'utf8');
+    const match = content.match(/^---([\s\S]+?)---/);
+    if (match) {
+      const lines = match[1].split('\n');
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('last_modified_at:')) {
+          const val = trimmed.split('last_modified_at:')[1].trim().replace(/['"]/g, '');
+          if (val) lastMod = val;
+        }
+      }
+    }
+
     urls.push({
       loc: `${siteUrl}/categories/${slug}/`,
-      lastmod: formatDate(stats.mtime)
+      lastmod: formatDate(lastMod)
     });
   });
 }
@@ -90,16 +105,16 @@ if (fs.existsSync(postsDir)) {
     if (!file.endsWith('.md')) return;
     const filePath = path.join(postsDir, file);
     const content = fs.readFileSync(filePath, 'utf8');
-    
+
     // Front matter parser
     const match = content.match(/^---([\s\S]+?)---/);
     if (!match) return;
-    
+
     const lines = match[1].split('\n');
     let dateStr = '';
     let lastModifiedStr = '';
     let sitemapAllowed = true;
-    
+
     lines.forEach(line => {
       const trimmed = line.trim();
       if (trimmed.startsWith('date:')) {
@@ -110,19 +125,19 @@ if (fs.existsSync(postsDir)) {
         sitemapAllowed = trimmed.split('sitemap:')[1].trim() !== 'false';
       }
     });
-    
+
     if (!sitemapAllowed) return;
-    
+
     // In Jekyll posts permalinks default to /:title/ or defined per-collection.
     // Let's get the title slug from filename: YYYY-MM-DD-title-slug.md
     const filenameMatch = file.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/);
     if (!filenameMatch) return;
     const postSlug = filenameMatch[1];
-    
+
     // Use last_modified_at if present, otherwise dateStr, otherwise mtime
     const fileStats = fs.statSync(filePath);
     const postDate = lastModifiedStr || dateStr || fileStats.mtime;
-    
+
     urls.push({
       loc: `${siteUrl}/${postSlug}/`,
       lastmod: formatDate(postDate)

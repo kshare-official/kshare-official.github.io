@@ -1,6 +1,6 @@
 ---
 title: "7 Viral 3D Illusion Notebook Girl Prompts That Create Mind-Blowing AI Art"
-date: 2026-06-17 12:00:00 +0530
+date: 2026-06-17 11:53:00 +0530
 layout: post
 status: published
 image: https://kshare.in/storage/prompt/after-images/large/viral-3d-illusion-notebook-girl-ai-prompts-after.webp

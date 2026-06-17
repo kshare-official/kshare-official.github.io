@@ -46,12 +46,22 @@ files.forEach(file => {
   
   let inCategories = false;
   let inTags = false;
+  let postDate = '';
+  let postLastModified = '';
   
   const categories = new Set();
   const tags = new Set();
   
   lines.forEach(line => {
     const trimmed = line.trim();
+    if (trimmed.startsWith('date:')) {
+      postDate = trimmed.substring(5).trim().replace(/['"]/g, '');
+      return;
+    }
+    if (trimmed.startsWith('last_modified_at:')) {
+      postLastModified = trimmed.substring(17).trim().replace(/['"]/g, '');
+      return;
+    }
     if (trimmed.startsWith('categories:')) {
       const parts = trimmed.split(':');
       if (parts[1] && parts[1].trim()) {
@@ -101,13 +111,13 @@ files.forEach(file => {
   categories.forEach(c => {
     if (!c) return;
     if (!postsByCategory[c]) postsByCategory[c] = [];
-    postsByCategory[c].push(file);
+    postsByCategory[c].push({ file, date: postDate, lastModified: postLastModified });
   });
   
   tags.forEach(t => {
     if (!t) return;
     if (!postsByTag[t]) postsByTag[t] = [];
-    postsByTag[t].push(file);
+    postsByTag[t].push({ file, date: postDate, lastModified: postLastModified });
   });
 });
 
@@ -122,6 +132,25 @@ Object.keys(postsByCategory).forEach(category => {
   const posts = postsByCategory[category];
   const totalPages = Math.ceil(posts.length / pageSize);
 
+  let latestDateStr = '';
+  let earliestDateStr = '';
+  posts.forEach(p => {
+    const d = p.lastModified || p.date || '';
+    const d2 = p.date || p.lastModified || '';
+    if (d) {
+       if (!latestDateStr || new Date(d) > new Date(latestDateStr)) {
+         latestDateStr = d;
+       }
+    }
+    if (d2) {
+       if (!earliestDateStr || new Date(d2) < new Date(earliestDateStr)) {
+         earliestDateStr = d2;
+       }
+    }
+  });
+  if (!latestDateStr) latestDateStr = new Date().toISOString();
+  if (!earliestDateStr) earliestDateStr = latestDateStr;
+
   for (let p = 1; p <= totalPages; p++) {
     const filename = p === 1 ? `${slug}.md` : `${slug}-page-${p}.md`;
     const filePath = path.join(categoriesDir, filename);
@@ -135,6 +164,8 @@ permalink: ${permalink}
 category_name: "${category}"
 page_number: ${p}
 total_pages: ${totalPages}
+date: ${earliestDateStr}
+last_modified_at: ${latestDateStr}
 ---
 `;
     fs.writeFileSync(filePath, content, 'utf8');
@@ -149,6 +180,25 @@ Object.keys(postsByTag).forEach(tag => {
   const posts = postsByTag[tag];
   const totalPages = Math.ceil(posts.length / pageSize);
 
+  let latestDateStr = '';
+  let earliestDateStr = '';
+  posts.forEach(p => {
+    const d = p.lastModified || p.date || '';
+    const d2 = p.date || p.lastModified || '';
+    if (d) {
+       if (!latestDateStr || new Date(d) > new Date(latestDateStr)) {
+         latestDateStr = d;
+       }
+    }
+    if (d2) {
+       if (!earliestDateStr || new Date(d2) < new Date(earliestDateStr)) {
+         earliestDateStr = d2;
+       }
+    }
+  });
+  if (!latestDateStr) latestDateStr = new Date().toISOString();
+  if (!earliestDateStr) earliestDateStr = latestDateStr;
+
   for (let p = 1; p <= totalPages; p++) {
     const filename = p === 1 ? `${slug}.md` : `${slug}-page-${p}.md`;
     const filePath = path.join(tagsDir, filename);
@@ -162,6 +212,8 @@ permalink: ${permalink}
 tag_name: "${tag}"
 page_number: ${p}
 total_pages: ${totalPages}
+date: ${earliestDateStr}
+last_modified_at: ${latestDateStr}
 ---
 `;
     fs.writeFileSync(filePath, content, 'utf8');
