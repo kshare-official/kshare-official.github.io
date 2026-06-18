@@ -41,7 +41,9 @@ function formatDate(dateInput) {
 const stats = fs.statSync(path.join(__dirname, '../index.html'));
 urls.push({
   loc: `${siteUrl}/`,
-  lastmod: formatDate(stats.mtime)
+  lastmod: formatDate(stats.mtime),
+  changefreq: 'daily',
+  priority: '1.0'
 });
 
 // 2. Add Static Pages
@@ -58,9 +60,12 @@ allowedStatics.forEach(item => {
   const filePath = path.join(__dirname, '..', item.file);
   if (fs.existsSync(filePath)) {
     const stats = fs.statSync(filePath);
+    const isCategories = item.url === '/categories/';
     urls.push({
       loc: `${siteUrl}${item.url}`,
-      lastmod: formatDate(stats.mtime)
+      lastmod: formatDate(stats.mtime),
+      changefreq: isCategories ? 'daily' : 'monthly',
+      priority: isCategories ? '0.8' : '0.5'
     });
   }
 });
@@ -93,7 +98,9 @@ if (fs.existsSync(categoriesDir)) {
 
     urls.push({
       loc: `${siteUrl}/categories/${slug}/`,
-      lastmod: formatDate(lastMod)
+      lastmod: formatDate(lastMod),
+      changefreq: 'weekly',
+      priority: '0.7'
     });
   });
 }
@@ -140,7 +147,9 @@ if (fs.existsSync(postsDir)) {
 
     urls.push({
       loc: `${siteUrl}/${postSlug}/`,
-      lastmod: formatDate(postDate)
+      lastmod: formatDate(postDate),
+      changefreq: 'weekly',
+      priority: '0.8'
     });
   });
 }
@@ -153,6 +162,12 @@ urls.forEach(item => {
   xmlContent += '  <url>\n';
   xmlContent += `    <loc>${item.loc}</loc>\n`;
   xmlContent += `    <lastmod>${item.lastmod}</lastmod>\n`;
+  if (item.changefreq) {
+    xmlContent += `    <changefreq>${item.changefreq}</changefreq>\n`;
+  }
+  if (item.priority) {
+    xmlContent += `    <priority>${item.priority}</priority>\n`;
+  }
   xmlContent += '  </url>\n';
 });
 
