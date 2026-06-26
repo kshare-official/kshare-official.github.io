@@ -5,7 +5,7 @@ description: "Latest posts in AI Art category, page 3"
 permalink: /categories/ai-art/page/3/
 category_name: "AI Art"
 page_number: 3
-total_pages: 11
+total_pages: 12
 date: 2026-01-03 14:41:13 +0530
-last_modified_at: 2026-06-18 11:45:00 +0530
+last_modified_at: 2026-06-25 12:00:00 +0530
 ---
