@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://kshare-official.github.io/categories/ai-art/</loc>
-    <lastmod>2026-06-29T23:15:00+05:30</lastmod>
+    <lastmod>2026-06-30T22:15:00+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -105,6 +105,12 @@
   <url>
     <loc>https://kshare-official.github.io/categories/portrait-headshot/</loc>
     <lastmod>2026-06-29T23:15:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kshare-official.github.io/categories/poster-banner/</loc>
+    <lastmod>2026-06-30T22:15:00+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -825,6 +831,12 @@
   <url>
     <loc>https://kshare-official.github.io/viral-monochrome-face-woman-ai-photo-prompt/</loc>
     <lastmod>2026-06-29T23:15:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kshare-official.github.io/romantic-couple-beach-ai-art-prompt/</loc>
+    <lastmod>2026-06-30T22:15:00+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
