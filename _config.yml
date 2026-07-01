@@ -8,17 +8,18 @@ description: "Discover the best AI prompts for image generators and creative AI 
 author: "KShare Team"
 email: "support@kshare.in"
 url: "https://kshare-official.github.io"
+website: "https://kshare.in"
 baseurl: ""   # Leave empty for root domain (e.g., kshare-official.github.io)
 
 # SEO & Social
 keywords: "AI prompts, image prompts, creative writing, AI art, prompt engineering, Midjourney prompts, ChatGPT prompts, AI tools"
-twitter_username: "@kshare"
-github_username: "kshare"
+twitter_username: "@kshare_official"
+github_username: "kshare-official"
 social:
   name: "KShare"
   links:
-    - "https://x.com/kshare"
-    - "https://github.com/kshare"
+    - "https://x.com/kshare_official"
+    - "https://github.com/kshare-official"
     - "https://linkedin.com/company/kshare"
 
 # ===============================================

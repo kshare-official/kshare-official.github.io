@@ -6,25 +6,25 @@
 {% endif %}
 
 {% if include.filter_by_category %}
-  {% assign target_category = include.filter_by_category | downcase %}
-  {% assign temp_posts = "" | split: "" %}
-  {% for post in filtered_posts %}
-    {% assign post_categories_downcased = post.categories | join: "," | downcase | split: "," %}
-    {% if post_categories_downcased contains target_category %}
-      {% assign temp_posts = temp_posts | push: post %}
-    {% endif %}
-  {% endfor %}
-  {% assign filtered_posts = temp_posts %}
+{% assign target_category = include.filter_by_category | downcase %}
+{% assign temp_posts = "" | split: "" %}
+{% for post in filtered_posts %}
+{% assign post_categories_downcased = post.categories | join: "," | downcase | split: "," %}
+{% if post_categories_downcased contains target_category %}
+{% assign temp_posts = temp_posts | push: post %}
+{% endif %}
+{% endfor %}
+{% assign filtered_posts = temp_posts %}
 {% elsif include.filter_by_tag %}
-  {% assign target_tag = include.filter_by_tag | downcase %}
-  {% assign temp_posts = "" | split: "" %}
-  {% for post in filtered_posts %}
-    {% assign post_tags_downcased = post.tags | join: "," | downcase | split: "," %}
-    {% if post_tags_downcased contains target_tag %}
-      {% assign temp_posts = temp_posts | push: post %}
-    {% endif %}
-  {% endfor %}
-  {% assign filtered_posts = temp_posts %}
+{% assign target_tag = include.filter_by_tag | downcase %}
+{% assign temp_posts = "" | split: "" %}
+{% for post in filtered_posts %}
+{% assign post_tags_downcased = post.tags | join: "," | downcase | split: "," %}
+{% if post_tags_downcased contains target_tag %}
+{% assign temp_posts = temp_posts | push: post %}
+{% endif %}
+{% endfor %}
+{% assign filtered_posts = temp_posts %}
 {% endif %}
 
 {% if filtered_posts.size > 0 %}
@@ -34,7 +34,13 @@
 {% assign posts_to_show = filtered_posts | slice: 0, include.limit %}
 {% endif %}
 
-<ul class="grid grid-cols-1 md:grid-cols-2 gap-8">
+{% if include.cols == 3 %}
+{% assign grid_cols_class = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" %}
+{% else %}
+{% assign grid_cols_class = "grid-cols-1 md:grid-cols-2" %}
+{% endif %}
+
+<ul class="grid {{ grid_cols_class }} gap-8">
     {% for post in posts_to_show %}
     <li class="flex">
         <article
