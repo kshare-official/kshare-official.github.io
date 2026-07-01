@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kshare-official.github.io/</loc>
-    <lastmod>2026-07-01T11:26:09+05:30</lastmod>
+    <lastmod>2026-07-01T11:28:31+05:30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://kshare-official.github.io/categories/ai-art/</loc>
-    <lastmod>2026-06-30T22:15:00+05:30</lastmod>
+    <lastmod>2026-07-01T11:30:00+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://kshare-official.github.io/categories/photography/</loc>
-    <lastmod>2026-04-25T01:45:00+05:30</lastmod>
+    <lastmod>2026-07-01T11:30:00+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -837,6 +837,12 @@
   <url>
     <loc>https://kshare-official.github.io/romantic-couple-beach-ai-art-prompt/</loc>
     <lastmod>2026-06-30T22:15:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kshare-official.github.io/mountain-lake-portrait-prompt/</loc>
+    <lastmod>2026-07-01T11:30:00+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
