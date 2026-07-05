@@ -86,4 +86,4 @@ A: You can easily swap out the background cues in the prompts with specific loca
 A: Yes! All prompts shared on KShare are free to use, modify, and distribute for both personal and commercial purposes.
 
 ## Conclusion
-The **Kerala Kasavu Saree Photoshoot AI Prompt** series showcases the incredible capabilities of modern AI photography. By combining traditional fashion, camera mechanics, and heritage environments, you can generate breathtaking imagery that honors South Indian heritage. Visit our [AI Art Prompts](https://kshare.in) library to unlock the custom prompts and start generating your own spectacular traditional saree masterpieces today!
+The **Kerala Kasavu Saree Photoshoot AI Prompt** series showcases the incredible capabilities of modern AI photography. By combining traditional fashion, camera mechanics, and heritage environments, you can generate breathtaking imagery that honors South Indian heritage. Visit our [AI Art Prompts Library](https://kshare.in) to unlock the custom prompts and start generating your own spectacular traditional saree masterpieces today!
